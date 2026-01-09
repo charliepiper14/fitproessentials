@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fit Pro Essentials - Meta Ads Strategic Audit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #162642 0%, #1a2d4f 100%);
+            color: #ffffff;
+            line-height: 1.75;
+            font-size: 16px;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            height: 60px;
+        }
+        
+        .slide-number {
+            background: #cc5b27;
+            padding: 12px 24px;
+            border-radius: 22px;
+            font-weight: 600;
+            font-size: 17px;
+            color: #ffffff;
+        }
+        
+        .main-title {
+            font-size: 3.4em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #cc5b27, #ff7c4c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 38px;
+            color: #ffffff;
+            font-weight: 300;
+        }
+        
+        .section-title {
+            font-size: 2.1em;
+            color: #ff7c4c;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin: 35px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #cc5b27;
+            border-radius: 14px;
+            padding: 32px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 160px;
+        }
+        
+        .stat-number {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #ff7c4c;
+            display: block;
+            margin-bottom: 14px;
+            line-height: 1.1;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: #ffffff !important;
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #cc5b27, #e86a35);
+            padding: 34px;
+            border-radius: 14px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .highlight-box h3 {
+            color: #ffffff;
+            margin-bottom: 16px;
+            font-weight: 600;
+            font-size: 1.5em;
+        }
+        
+        .highlight-box p {
+            color: #ffffff;
+            font-size: 1.15em;
+            line-height: 1.7;
+        }
+        
+        .highlight-box .bullet-list li {
+            color: #ffffff;
+        }
+        
+        .highlight-box .bullet-list li:before {
+            background: #ffffff;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 34px;
+            align-items: start;
+        }
+        
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+        
+        .performance-table {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+        
+        .performance-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .performance-table th {
+            background: #2c3e50;
+            padding: 18px 16px;
+            font-weight: 600;
+            font-size: 15px;
+            color: #ffffff !important;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        
+        .performance-table td {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 15px;
+            color: #ffffff !important;
+            vertical-align: middle;
+        }
+        
+        .performance-table td strong {
+            color: #ffffff !important;
+        }
+        
+        .performance-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .text-left { text-align: left; }
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        
+        .bullet-list {
+            list-style: none;
+            margin: 20px 0;
+            padding: 0;
+        }
+        
+        .bullet-list li {
+            margin: 16px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 16px;
+            line-height: 1.75;
+            color: #ffffff !important;
+        }
+        
+        .bullet-list li:before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background: #ff7c4c;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 8px;
+            flex-shrink: 0;
+        }
+        
+        .bullet-list li strong {
+            color: #ffffff !important;
+            font-weight: 600;
+        }
+        
+        .content-block {
+            background: rgba(255, 255, 255, 0.08);
+            border-left: 5px solid #cc5b27;
+            border-radius: 0 14px 14px 0;
+            padding: 28px;
+            margin: 22px 0;
+        }
+        
+        .content-block h4 {
+            color: #ff7c4c;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+        
+        .issue-block {
+            background: rgba(255, 107, 122, 0.15);
+            border-left: 5px solid #ff6b7a;
+            border-radius: 0 14px 14px 0;
+            padding: 28px;
+            margin: 22px 0;
+        }
+        
+        .issue-block h4 {
+            color: #ff6b7a;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+        
+        .issue-block .bullet-list li {
+            color: #ffffff !important;
+        }
+        
+        .issue-block .bullet-list li strong {
+            color: #ffffff !important;
+        }
+        
+        .issue-block .bullet-list li:before {
+            background: #ff6b7a;
+        }
+        
+        .opportunity-block {
+            background: rgba(93, 216, 121, 0.15);
+            border-left: 5px solid #5dd879;
+            border-radius: 0 14px 14px 0;
+            padding: 28px;
+            margin: 22px 0;
+        }
+        
+        .opportunity-block h4 {
+            color: #5dd879;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+        
+        .opportunity-block .bullet-list li {
+            color: #ffffff !important;
+        }
+        
+        .opportunity-block .bullet-list li strong {
+            color: #ffffff !important;
+        }
+        
+        .opportunity-block .bullet-list li:before {
+            background: #5dd879;
+        }
+        
+        .caution-block {
+            background: rgba(255, 218, 106, 0.15);
+            border-left: 5px solid #ffda6a;
+            border-radius: 0 14px 14px 0;
+            padding: 28px;
+            margin: 22px 0;
+        }
+        
+        .caution-block h4 {
+            color: #ffda6a;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+        
+        .caution-block .bullet-list li {
+            color: #ffffff !important;
+        }
+        
+        .caution-block .bullet-list li strong {
+            color: #ffffff !important;
+        }
+        
+        .caution-block .bullet-list li:before {
+            background: #ffda6a;
+        }
+        
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            font-size: 16px;
+            color: #ffffff !important;
+        }
+        
+        .metric-row span {
+            color: #ffffff !important;
+        }
+        
+        .metric-row strong {
+            color: #ffffff !important;
+        }
+        
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+        
+        .funnel-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .funnel-stage {
+            text-align: center;
+            padding: 24px 28px;
+            border-radius: 14px;
+            min-width: 180px;
+        }
+        
+        .funnel-stage div {
+            color: #ffffff;
+        }
+        
+        .funnel-arrow {
+            font-size: 2em;
+            color: #ff7c4c;
+            font-weight: 300;
+        }
+        
+        .timeline-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            gap: 20px;
+        }
+        
+        .timeline-stage {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 24px;
+            border-radius: 14px;
+            flex: 1;
+        }
+        
+        .timeline-stage h4 {
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+        
+        .timeline-stage div {
+            font-size: 15px;
+            color: #ffffff;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .status-tag {
+            display: inline-block;
+            padding: 7px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-active { background: #28a745; color: #ffffff; }
+        .status-paused { background: #ffc107; color: #1a1a1a; }
+        .status-failed { background: #dc3545; color: #ffffff; }
+        .status-info { background: #17a2b8; color: #ffffff; }
+        .status-priority { background: #cc5b27; color: #ffffff; }
+        .status-purple { background: #6f42c1; color: #ffffff; }
+        
+        .text-green { color: #5dd879 !important; }
+        .text-red { color: #ff6b7a !important; }
+        .text-orange { color: #ffb366 !important; }
+        .text-blue { color: #5bc0de !important; }
+        .text-yellow { color: #ffda6a !important; }
+        
+        .progress-bar-container {
+            background: rgba(255,255,255,0.2);
+            height: 14px;
+            border-radius: 7px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            border-radius: 7px;
+        }
+        
+        .summary-box {
+            padding: 18px 22px;
+            border-radius: 10px;
+            margin-top: 18px;
+            font-size: 15px;
+            line-height: 1.65;
+            color: #ffffff !important;
+        }
+        
+        .summary-box strong {
+            color: #ffffff !important;
+        }
+        
+        .table-highlight-row {
+            background: rgba(204, 91, 39, 0.25);
+        }
+        
+        .table-green-row {
+            background: rgba(40, 167, 69, 0.16);
+        }
+        
+        .table-purple-row {
+            background: rgba(111, 66, 193, 0.16);
+        }
+        
+        @media (max-width: 1200px) {
+            .three-column {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+            .main-title {
+                font-size: 2.4em;
+            }
+            .two-column, .three-column {
+                grid-template-columns: 1fr;
+            }
+            .funnel-flow, .timeline-flow {
+                flex-direction: column;
+            }
+            .stat-card {
+                min-height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" class="logo">
+            <div class="slide-number">01</div>
+        </div>
+        <div class="main-title">Fit Pro Essentials</div>
+        <div class="subtitle">Meta Ads Strategic Audit and 90-Day Growth Roadmap</div>
+        
+        <div class="highlight-box">
+            <h3>Multi-Product Portfolio Analysis</h3>
+            <p>6-Week Challenge | Coach Engine | Content Club | Sugar Detox</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card" style="border-color: #5dd879;">
+                <span class="stat-number" style="color: #5dd879;">90</span>
+                <div class="stat-label">Confirmed Sales<br>December 18 to January 7</div>
+            </div>
+            <div class="stat-card" style="border-color: #5bc0de;">
+                <span class="stat-number" style="color: #5bc0de;">$4,734</span>
+                <div class="stat-label">Total Revenue<br>Tracked Period</div>
+            </div>
+            <div class="stat-card" style="border-color: #ff7c4c;">
+                <span class="stat-number" style="color: #ff7c4c;">$52.60</span>
+                <div class="stat-label">Average Order Value<br>Against $27 Front-End</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">$1,400</span>
+                <div class="stat-label">Customer Lifetime Value<br>Content Club</div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <div style="font-size: 1.25em; margin-top: 24px;"><strong>Audit Period:</strong> December 1, 2025 to January 9, 2026</div>
+            <div style="margin-top: 16px; font-size: 1.15em;">Campaign Performance | Funnel Optimisation | Competitive Intelligence | Scaling Strategy</div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Executive Summary -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" class="logo">
+            <div class="slide-number">02</div>
+        </div>
+        <div class="section-title">Executive Summary</div>
+        
+        <div class="issue-block">
+            <h4>Critical Issues Requiring Immediate Action</h4>
+            <ul class="bullet-list">
+                <li><strong>Attribution Gap:</strong> Meta reports 31 purchases against 90 confirmed sales. Approximately 66 percent of revenue is not being attributed to paid campaigns.</li>
+                <li><strong>Audience Saturation:</strong> Warm campaign frequency has reached 5.54. Industry best practice recommends maintaining frequency below 3.0 to prevent creative fatigue.</li>
+                <li><strong>Algorithm Disruption:</strong> Multiple audience modifications between January 3 and 6 reset learning phase, causing cost per acquisition to increase from $8.74 to $18.35.</li>
+                <li><strong>Content Club Performance:</strong> $58.97 invested with zero purchases. The recurring payment model presents a significant conversion barrier.</li>
+                <li><strong>Campaign Status:</strong> 6-Week Challenge campaigns paused on January 7 following consistent performance decline.</li>
+            </ul>
+        </div>
+
+        <div class="opportunity-block">
+            <h4>Immediate Opportunities</h4>
+            <ul class="bullet-list">
+                <li><strong>Order Value Performance:</strong> Actual average order value of $52.60 against $27 front-end price demonstrates strong upsell funnel execution.</li>
+                <li><strong>Proven Creative:</strong> HeyGen AI video achieving $14.01 cost per acquisition with Meta Above Average conversion ranking.</li>
+                <li><strong>Funnel Conversion Rates:</strong> Order bump converting at 16.7 percent, $97 upsell at 20 percent, and $1 Coach Engine trial at 3.3 percent.</li>
+                <li><strong>Sugar Detox Launch Ready:</strong> New $12 lead magnet is live and awaiting traffic allocation.</li>
+                <li><strong>Seasonal Timing:</strong> January represents peak acquisition period for fitness coaching products.</li>
+            </ul>
+        </div>
+
+        <div class="caution-block">
+            <h4>Strategic Considerations</h4>
+            <ul class="bullet-list">
+                <li><strong>Customer Composition:</strong> 73 percent of sales originated from returning customers. Cold traffic acquisition requires improvement.</li>
+                <li><strong>Coach Engine Creative:</strong> Current creative direction flagged as too dark with messaging that over-promises. Complete redesign required.</li>
+                <li><strong>Content Club Positioning:</strong> Recurring subscription model facing resistance from AI competition and subscription fatigue.</li>
+            </ul>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card" style="border-color: #5dd879;">
+                <span class="stat-number" style="color: #5dd879;">$8.74</span>
+                <div class="stat-label">Best CPA Achieved<br>December 21 to 28</div>
+            </div>
+            <div class="stat-card" style="border-color: #ffb366;">
+                <span class="stat-number" style="color: #ffb366;">$18.35</span>
+                <div class="stat-label">Current Average CPA<br>Post-Modification</div>
+            </div>
+            <div class="stat-card" style="border-color: #ff6b7a;">
+                <span class="stat-number" style="color: #ff6b7a;">5.54</span>
+                <div class="stat-label">Frequency Score<br>Critical Threshold</div>
+            </div>
+            <div class="stat-card" style="border-color: #5bc0de;">
+                <span class="stat-number" style="color: #5bc0de;">27%</span>
+                <div class="stat-label">New Customer Rate<br>Against 73% Returning</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Campaign Performance -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" class="logo">
+            <div class="slide-number">03</div>
+        </div>
+        <div class="section-title">Campaign Performance Analysis</div>
+        
+        <div class="performance-table">
+            <table>
+                <tr>
+                    <th class="text-left">Campaign</th>
+                    <th class="text-right">Investment</th>
+                    <th class="text-center">Purchases</th>
+                    <th class="text-right">CPA</th>
+                    <th class="text-center">ROAS</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-left">Recommended Action</th>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>6W Challenge Creative Mix (Warm)</strong></td>
+                    <td class="text-right">$318.35</td>
+                    <td class="text-center">14</td>
+                    <td class="text-right text-orange"><strong>$22.74</strong></td>
+                    <td class="text-center">1.41x</td>
+                    <td class="text-center"><span class="status-tag status-paused">Paused</span></td>
+                    <td class="text-left">Creative refresh required</td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>6W Challenge Opened (Cold)</strong></td>
+                    <td class="text-right">$191.48</td>
+                    <td class="text-center">17</td>
+                    <td class="text-right text-green"><strong>$11.26</strong></td>
+                    <td class="text-center">1.87x</td>
+                    <td class="text-center"><span class="status-tag status-paused">Paused</span></td>
+                    <td class="text-left">Reactivate with corrections</td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Content Club Coaches Only</strong></td>
+                    <td class="text-right">$58.97</td>
+                    <td class="text-center">0</td>
+                    <td class="text-right text-red"><strong>N/A</strong></td>
+                    <td class="text-center">0x</td>
+                    <td class="text-center"><span class="status-tag status-failed">Failed</span></td>
+                    <td class="text-left">Strategy overhaul required</td>
+                </tr>
+                <tr class="table-highlight-row">
+                    <td class="text-left"><strong>Total</strong></td>
+                    <td class="text-right"><strong>$568.80</strong></td>
+                    <td class="text-center"><strong>31</strong></td>
+                    <td class="text-right"><strong>$18.35</strong></td>
+                    <td class="text-center"><strong>1.42x</strong></td>
+                    <td class="text-center"></td>
+                    <td class="text-left"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="two-column">
+            <div class="content-block" style="border-color: #5dd879;">
+                <h4 style="color: #5dd879;">Peak Performance Period: December 21 to 28</h4>
+                <div class="metric-row">
+                    <span>Daily Sales Volume</span>
+                    <span class="text-green"><strong>12 sales per day</strong></span>
+                </div>
+                <div class="metric-row">
+                    <span>Cost Per Acquisition</span>
+                    <span class="text-green"><strong>$8.74</strong></span>
+                </div>
+                <div class="metric-row">
+                    <span>Return on Ad Spend</span>
+                    <span class="text-green"><strong>3.74x</strong></span>
+                </div>
+                <div class="metric-row">
+                    <span>Daily Budget</span>
+                    <span><strong>$100</strong></span>
+                </div>
+                <div class="summary-box" style="background: rgba(93, 216, 121, 0.2);">
+                    <strong>Contributing Factors:</strong> Consistent creative rotation, clean audience segmentation, seasonal buying intent, video creative performing above benchmark
+                </div>
+            </div>
+            
+            <div class="content-block" style="border-color: #ff6b7a;">
+                <h4 style="color: #ff6b7a;">Decline Period: January 3 to 7</h4>
+                <div class="metric-row">
+                    <span>Daily Sales Volume</span>
+                    <span class="text-red"><strong>1 to 2 sales per day</strong></span>
+                </div>
+                <div class="metric-row">
+                    <span>Cost Per Acquisition</span>
+                    <span class="text-red"><strong>$23 and above</strong></span>
+                </div>
+                <div class="metric-row">
+                    <span>Warm Audience Frequency</span>
+                    <span class="text-red"><strong>5.54</strong></span>
+                </div>
+                <div class="metric-row">
+                    <span>Cold Campaign Delivery</span>
+                    <span class="text-red"><strong>Restricted</strong></span>
+                </div>
+                <div class="summary-box" style="background: rgba(255, 107, 122, 0.2);">
+                    <strong>Contributing Factors:</strong> Audience exclusion modifications, algorithm learning reset, creative fatigue, warm audience exhaustion
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 30px;">
+            <h3>Funnel Metrics Summary</h3>
+            <div class="three-column" style="text-align: center; margin-top: 22px;">
+                <div>
+                    <div style="font-size: 2.5em; font-weight: 700;">1.00 to 1.43%</div>
+                    <div style="font-size: 16px; margin-top: 10px;">Link Click-Through Rate</div>
+                </div>
+                <div>
+                    <div style="font-size: 2.5em; font-weight: 700;">$2.21 to $3.47</div>
+                    <div style="font-size: 16px; margin-top: 10px;">Cost Per Link Click</div>
+                </div>
+                <div>
+                    <div style="font-size: 2.5em; font-weight: 700;">12.5%</div>
+                    <div style="font-size: 16px; margin-top: 10px;">Landing Page to Purchase Rate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: True Revenue Analysis -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" class="logo">
+            <div class="slide-number">04</div>
+        </div>
+        <div class="section-title">Revenue Attribution Analysis</div>
+        
+        <div class="highlight-box">
+            <h3>Critical Attribution Discrepancy Identified</h3>
+            <p>Meta Ads Manager reports 31 purchases while sales tracker confirms 90 transactions.<br>
+            Approximately 66 percent of revenue is not being attributed to paid advertising.</p>
+        </div>
+
+        <div class="two-column">
+            <div class="content-block" style="border-color: #5bc0de;">
+                <h4 style="color: #5bc0de;">Confirmed Sales Data: December 18 to January 7</h4>
+                <div class="metric-row">
+                    <span>Total Transactions</span>
+                    <span><strong>90</strong></span>
+                </div>
+                <div class="metric-row">
+                    <span>Challenge Revenue at $27</span>
+                    <span><strong>$2,430</strong></span>
+                </div>
+                <div class="metric-row">
+                    <span>Order Bump Revenue at $17</span>
+                    <span><strong>$255</strong> (15 conversions)</span>
+                </div>
+                <div class="metric-row">
+                    <span>Upsell Revenue at $97</span>
+                    <span><strong>$1,746</strong> (18 conversions)</span>
+                </div>
+                <div class="metric-row">
+                    <span>Coach Engine Trial at $1</span>
+                    <span><strong>$3</strong> (3 signups)</span>
+                </div>
+                <div class="metric-row">
+                    <span>Additional Revenue</span>
+                    <span><strong>$300</strong></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; margin-top: 18px; background: rgba(93, 216, 121, 0.25); border-radius: 10px;">
+                    <span style="font-size: 17px;"><strong>Total Revenue</strong></span>
+                    <span class="text-green" style="font-size: 22px;"><strong>$4,734</strong></span>
+                </div>
+            </div>
+            
+            <div>
+                <div class="content-block">
+                    <h4>Upsell Funnel Performance</h4>
+                    <div style="margin: 24px 0;">
+                        <div style="margin-bottom: 22px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                                <span style="font-size: 16px;">Order Bump Conversion</span>
+                                <span class="text-green" style="font-weight: 600; font-size: 16px;">16.7%</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 16.7%; background: #5dd879;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 22px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                                <span style="font-size: 16px;">$97 Upsell Conversion</span>
+                                <span class="text-green" style="font-weight: 600; font-size: 16px;">20.0%</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 20%; background: #5dd879;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 22px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                                <span style="font-size: 16px;">Coach Engine Trial Conversion</span>
+                                <span class="text-orange" style="font-weight: 600; font-size: 16px;">3.3%</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 3.3%; background: #ffb366;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 24px; background: rgba(204, 91, 39, 0.2); border-radius: 12px; text-align: center;">
+                        <div style="font-size: 2.8em; font-weight: 700; color: #ff7c4c;">$52.60</div>
+                        <div style="font-size: 16px; margin-top: 10px;">Actual Average Order Value</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="two-column" style="margin-top: 30px;">
+            <div class="content-block" style="border-color: #ffb366;">
+                <h4 style="color: #ffb366;">Customer Composition Analysis</h4>
+                <div style="display: flex; gap: 24px; margin-top: 22px;">
+                    <div style="flex: 1; text-align: center; padding: 24px; background: rgba(255, 179, 102, 0.16); border-radius: 12px;">
+                        <div style="font-size: 2.6em; font-weight: 700; color: #ffb366;">73%</div>
+                        <div style="font-size: 15px; margin-top: 10px;">Returning Customers</div>
+                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">66 of 90 transactions</div>
+                    </div>
+                    <div style="flex: 1; text-align: center; padding: 24px; background: rgba(93, 216, 121, 0.16); border-radius: 12px;">
+                        <div style="font-size: 2.6em; font-weight: 700; color: #5dd879;">27%</div>
+                        <div style="font-size: 15px; margin-top: 10px;">New Customers</div>
+                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">24 of 90 transactions</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-block" style="border-color: #5bc0de;">
+                <h4 style="color: #5bc0de;">Coach Engine Pipeline Status</h4>
+                <div class="metric-row">
+                    <span>Existing Coach Engine Members</span>
+                    <span><strong>8</strong></span>
+                </div>
+                <div class="metric-row">
+                    <span>New Trial Signups</span>
+                    <span><strong>3</strong></span>
+                </div>
+                <div class="metric-row">
+                    <span>Converted to Paid</span>
+                    <span class="text-green"><strong>2</strong></span>
+                </div>
+                <div class="metric-row">
+                    <span>Cancelled</span>
+                    <span class="text-red"><strong>3</strong></span>
+                </div>
+                <div class="summary-box" style="background: rgba(91, 192, 222, 0.2);">
+                    Trial to paid conversion rate of 66 percent indicates strong product-market fit when traffic reaches the offer.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Creative Performance -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" class="logo">
+            <div class="slide-number">05</div>
+        </div>
+        <div class="section-title">Creative Performance Analysis</div>
+        
+        <div class="performance-table">
+            <table>
+                <tr>
+                    <th class="text-left">Creative Asset</th>
+                    <th class="text-center">Format</th>
+                    <th class="text-right">Investment</th>
+                    <th class="text-center">Purchases</th>
+                    <th class="text-right">CPA</th>
+                    <th class="text-center">ROAS</th>
+                    <th class="text-center">Meta Quality Ranking</th>
+                </tr>
+                <tr class="table-green-row">
+                    <td class="text-left"><strong>HeyGen AI Video (6W)</strong></td>
+                    <td class="text-center">Video</td>
+                    <td class="text-right">$84.07</td>
+                    <td class="text-center">6</td>
+                    <td class="text-right text-green"><strong>$14.01</strong></td>
+                    <td class="text-center">1.93x</td>
+                    <td class="text-center"><span class="status-tag status-active">Above Average</span></td>
+                </tr>
+                <tr class="table-green-row">
+                    <td class="text-left"><strong>Static Image NEW1</strong></td>
+                    <td class="text-center">Static</td>
+                    <td class="text-right">$62.47</td>
+                    <td class="text-center">6</td>
+                    <td class="text-right text-green"><strong>$10.41</strong></td>
+                    <td class="text-center">0.96x</td>
+                    <td class="text-center"><span class="status-tag status-info">Average</span></td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Static Image 1 (Creative Mix)</strong></td>
+                    <td class="text-center">Static</td>
+                    <td class="text-right">$318.35</td>
+                    <td class="text-center">14</td>
+                    <td class="text-right text-orange"><strong>$22.74</strong></td>
+                    <td class="text-center">1.41x</td>
+                    <td class="text-center"><span class="status-tag status-paused">Fatigued</span></td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Static Image 1 (Opened)</strong></td>
+                    <td class="text-center">Static</td>
+                    <td class="text-right">$99.67</td>
+                    <td class="text-center">5</td>
+                    <td class="text-right text-orange"><strong>$19.93</strong></td>
+                    <td class="text-center">1.35x</td>
+                    <td class="text-center"><span class="status-tag status-info">Average</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="three-column">
+            <div class="opportunity-block">
+                <h4>Performing Elements</h4>
+                <ul class="bullet-list">
+                    <li><strong>Video Format:</strong> Outperforming static by 38 percent on CPA</li>
+                    <li><strong>Visual Pattern:</strong> Woman with product mockups generating strongest response</li>
+                    <li><strong>Headline Structure:</strong> Curiosity-driven hooks performing above benchmark</li>
+                    <li><strong>Price Anchoring:</strong> $597 to $27 comparison driving perceived value</li>
+                </ul>
+            </div>
+            
+            <div class="caution-block">
+                <h4>Areas Requiring Attention</h4>
+                <ul class="bullet-list">
+                    <li><strong>Creative Fatigue:</strong> Core assets running since campaign launch</li>
+                    <li><strong>Limited Variation:</strong> Only four active concepts in rotation</li>
+                    <li><strong>Angle Testing:</strong> All creative using identical messaging framework</li>
+                    <li><strong>Frequency Threshold:</strong> Warm audience at 5.54</li>
+                </ul>
+            </div>
+            
+            <div class="issue-block">
+                <h4>Coach Engine Creative Issues</h4>
+                <ul class="bullet-list">
+                    <li><strong>Aesthetic Direction:</strong> Current creative too dark; lighter palette requested</li>
+                    <li><strong>Messaging Accuracy:</strong> Copy implies done-for-you service</li>
+                    <li><strong>Creative Differentiation:</strong> All assets share identical visual treatment</li>
+                    <li><strong>Promotional Elements:</strong> January bonuses not reflected</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Competitive Landscape -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" class="logo">
+            <div class="slide-number">06</div>
+        </div>
+        <div class="section-title">Competitive Landscape</div>
+        
+        <div class="performance-table">
+            <table>
+                <tr>
+                    <th class="text-left">Competitor</th>
+                    <th class="text-center">Active Ads</th>
+                    <th class="text-left">Visual Style</th>
+                    <th class="text-center">Relevance</th>
+                    <th class="text-left">Key Insight</th>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Valerie Diane</strong></td>
+                    <td class="text-center">20+</td>
+                    <td class="text-left">Clean, minimal, natural tones</td>
+                    <td class="text-center"><span class="status-tag status-active">Preferred Style</span></td>
+                    <td class="text-left">Lighter aesthetic, empathy-driven headlines, lifestyle imagery</td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Mike Milner / The Collective</strong></td>
+                    <td class="text-center">50+</td>
+                    <td class="text-left">Varied, high volume testing</td>
+                    <td class="text-center"><span class="status-tag status-failed">Direct Competitor</span></td>
+                    <td class="text-left">GHL competitor, video dominant, aggressive testing cadence</td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Fit Chicks Academy</strong></td>
+                    <td class="text-center">30+</td>
+                    <td class="text-left">Purple and pink, dense layouts</td>
+                    <td class="text-center"><span class="status-tag status-info">Certification Focus</span></td>
+                    <td class="text-left">Strong niche positioning for women over 40, bundle-centric offers</td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Ru Anderson</strong></td>
+                    <td class="text-center">2 only</td>
+                    <td class="text-left">Video-first, lead magnet focus</td>
+                    <td class="text-center"><span class="status-tag status-purple">Quality Benchmark</span></td>
+                    <td class="text-left">Minimal ad count, quality over quantity, simple funnel architecture</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="opportunity-block" style="margin-top: 35px;">
+            <h4>Creative Direction Recommendations</h4>
+            <div class="three-column" style="margin-top: 24px;">
+                <div>
+                    <strong class="text-green" style="font-size: 17px;">Adopt from Valerie Diane:</strong>
+                    <ul class="bullet-list">
+                        <li>Lighter colour palette with sage, cream, soft teal</li>
+                        <li>Natural lifestyle photography</li>
+                        <li>Clean, uncluttered layouts with clear focal points</li>
+                        <li>Empathy-first headline structures</li>
+                    </ul>
+                </div>
+                <div>
+                    <strong class="text-blue" style="font-size: 17px;">Adopt from Ru Anderson:</strong>
+                    <ul class="bullet-list">
+                        <li>Video-first creative strategy</li>
+                        <li>Lead magnet positioning for cold traffic</li>
+                        <li>Simple, direct value propositions</li>
+                        <li>Quality over quantity approach to testing</li>
+                    </ul>
+                </div>
+                <div>
+                    <strong class="text-red" style="font-size: 17px;">Differentiate from Mike Milner:</strong>
+                    <ul class="bullet-list">
+                        <li>Avoid generic client acquisition messaging</li>
+                        <li>Lead with time-saving benefits over growth promises</li>
+                        <li>Emphasise community and ongoing support</li>
+                        <li>Position 10-plus years of industry experience</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Product Ecosystem -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" class="logo">
+            <div class="slide-number">07</div>
+        </div>
+        <div class="section-title">Product Ecosystem and Funnel Architecture</div>
+        
+        <div class="funnel-flow">
+            <div class="funnel-stage" style="background: rgba(93, 216, 121, 0.25); border: 3px solid #5dd879;">
+                <div style="font-weight: 600; color: #5dd879; font-size: 17px;">Lead Magnets</div>
+                <div style="font-size: 15px; margin-top: 12px;">Sugar Detox $12<br>Free Resources</div>
+            </div>
+            <div class="funnel-arrow">&#8594;</div>
+            <div class="funnel-stage" style="background: rgba(91, 192, 222, 0.25); border: 3px solid #5bc0de;">
+                <div style="font-weight: 600; color: #5bc0de; font-size: 17px;">Front-End</div>
+                <div style="font-size: 15px; margin-top: 12px;">6W Challenge $27<br>Products $97+</div>
+            </div>
+            <div class="funnel-arrow">&#8594;</div>
+            <div class="funnel-stage" style="background: rgba(255, 179, 102, 0.25); border: 3px solid #ffb366;">
+                <div style="font-weight: 600; color: #ffb366; font-size: 17px;">Upsells</div>
+                <div style="font-size: 15px; margin-top: 12px;">Order Bump $17<br>Bundle $97</div>
+            </div>
+            <div class="funnel-arrow">&#8594;</div>
+            <div class="funnel-stage" style="background: rgba(255, 124, 76, 0.25); border: 3px solid #ff7c4c;">
+                <div style="font-weight: 600; color: #ff7c4c; font-size: 17px;">Core Offers</div>
+                <div style="font-size: 15px; margin-top: 12px;">Coach Engine $97/mo<br>Content Club $47/mo</div>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div>
+                <div class="content-block" style="border-color: #5dd879;">
+                    <h4 style="color: #5dd879;">6-Week Challenge at $27</h4>
+                    <span class="status-tag status-active" style="margin-bottom: 18px; display: inline-block;">Top Performer</span>
+                    <div class="metric-row">
+                        <span>Current Status</span>
+                        <span>Paused, reactivation recommended</span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Best CPA Achieved</span>
+                        <span class="text-green"><strong>$8.74</strong></span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Order Bump Rate</span>
+                        <span><strong>16.7%</strong></span>
+                    </div>
+                    <div class="summary-box" style="background: rgba(93, 216, 121, 0.16);">
+                        Primary cold traffic offer. Proven funnel with strong upsell path. January represents peak acquisition window.
+                    </div>
+                </div>
+                
+                <div class="content-block" style="border-color: #a78bfa; margin-top: 24px;">
+                    <h4 style="color: #a78bfa;">Sugar Detox at $12</h4>
+                    <span class="status-tag status-info" style="margin-bottom: 18px; display: inline-block;">Launch Ready</span>
+                    <div class="metric-row">
+                        <span>Current Status</span>
+                        <span>Awaiting Traffic</span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Landing Page</span>
+                        <span><strong>Live</strong></span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Upsell Path</span>
+                        <span><strong>Content Club</strong></span>
+                    </div>
+                    <div class="summary-box" style="background: rgba(167, 139, 250, 0.16);">
+                        New lead magnet for cold traffic. Low price point designed for high conversion volume. Creative assets required.
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="content-block" style="border-color: #ff7c4c;">
+                    <h4 style="color: #ff7c4c;">Coach Engine at $1 Trial to $97 per month</h4>
+                    <span class="status-tag status-priority" style="margin-bottom: 18px; display: inline-block;">Strategic Priority</span>
+                    <div class="metric-row">
+                        <span>Current Membership</span>
+                        <span><strong>230 clients</strong></span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Target</span>
+                        <span style="color: #ff7c4c;"><strong>500 clients</strong></span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Trial Conversion Rate</span>
+                        <span class="text-green"><strong>66%</strong></span>
+                    </div>
+                    <div class="summary-box" style="background: rgba(255, 124, 76, 0.16);">
+                        Backend offer. Creative requires complete redesign. Warm traffic only until new assets approved.
+                    </div>
+                </div>
+                
+                <div class="content-block" style="border-color: #f687b3; margin-top: 24px;">
+                    <h4 style="color: #f687b3;">Content Club at $47 per month</h4>
+                    <span class="status-tag status-failed" style="margin-bottom: 18px; display: inline-block;">Requires Repositioning</span>
+                    <div class="metric-row">
+                        <span>Current Membership</span>
+                        <span><strong>Approximately 500</strong></span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Target</span>
+                        <span style="color: #ff7c4c;"><strong>650+ members</strong></span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Lifetime Value</span>
+                        <span class="text-green"><strong>$1,400</strong></span>
+                    </div>
+                    <div class="summary-box" style="background: rgba(246, 135, 179, 0.16);">
+                        Recurring model facing subscription resistance. Competition from AI content tools. Repositioning strategy required.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: 90-Day Roadmap Month 1 -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" class="logo">
+            <div class="slide-number">08</div>
+        </div>
+        <div class="section-title">90-Day Roadmap: Month One</div>
+        
+        <div class="highlight-box">
+            <h3>Month One Priority: Reactivation, Stabilisation, and Quick Wins</h3>
+            <p>Restore 6-Week Challenge to target CPA | Launch Sugar Detox | Resolve tracking | Refresh creative</p>
+        </div>
+
+        <div class="timeline-flow">
+            <div class="timeline-stage" style="border: 3px solid #ff6b7a;">
+                <h4 style="color: #ff6b7a;">Week 1</h4>
+                <div>Emergency Corrections</div>
+            </div>
+            <div class="funnel-arrow">&#8594;</div>
+            <div class="timeline-stage" style="border: 3px solid #ffb366;">
+                <h4 style="color: #ffb366;">Week 2</h4>
+                <div>Sugar Detox Launch</div>
+            </div>
+            <div class="funnel-arrow">&#8594;</div>
+            <div class="timeline-stage" style="border: 3px solid #ffda6a;">
+                <h4 style="color: #ffda6a;">Week 3</h4>
+                <div>Creative Refresh</div>
+            </div>
+            <div class="funnel-arrow">&#8594;</div>
+            <div class="timeline-stage" style="border: 3px solid #5dd879;">
+                <h4 style="color: #5dd879;">Week 4</h4>
+                <div>Optimisation and Scale</div>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div class="issue-block">
+                <h4>Week 1 to 2: Immediate Actions</h4>
+                <ul class="bullet-list">
+                    <li><strong>Reactivate 6-Week Challenge:</strong> Deploy Opened cold campaign structure (proven lowest CPA). Implement purchaser exclusions via confirmation page audiences. Add Canada to all geographic targeting. Budget: $100 per day warm, $60 per day cold.</li>
+                    <li><strong>Resolve Attribution Discrepancy:</strong> Audit pixel implementation across all confirmation pages. Implement Conversions API for server-side tracking.</li>
+                    <li><strong>Creative Quick Fixes:</strong> Produce 2 to 3 new HeyGen video variations. Correct Workout Programming messaging error.</li>
+                </ul>
+            </div>
+            
+            <div class="opportunity-block">
+                <h4>Week 3 to 4: Creative Refresh and Scale</h4>
+                <ul class="bullet-list">
+                    <li><strong>Sugar Detox Campaign Launch:</strong> New cold traffic campaign at $40 per day initial test. Advantage Plus broad targeting, ages 23 to 60. 2 to 3 static images following lighter aesthetic direction. Scale to $60 per day in month two if CPA holds.</li>
+                    <li><strong>6-Week Challenge Creative Production:</strong> 5 or more new static images with lighter aesthetic. 3 or more new HeyGen videos with varied hooks.</li>
+                    <li><strong>Coach Engine Creative Redesign:</strong> Complete visual overhaul with lighter palette. Include January promotional bonuses. Warm remarketing only at $40 per day.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">$7,200</span>
+                <div class="stat-label">Month One Budget<br>Recommended</div>
+            </div>
+            <div class="stat-card" style="border-color: #5dd879;">
+                <span class="stat-number" style="color: #5dd879;">Under $15</span>
+                <div class="stat-label">Target Blended CPA<br>By Week Four</div>
+            </div>
+            <div class="stat-card" style="border-color: #5bc0de;">
+                <span class="stat-number" style="color: #5bc0de;">200-250</span>
+                <div class="stat-label">Target Sales<br>Month One</div>
+            </div>
+            <div class="stat-card" style="border-color: #ffb366;">
+                <span class="stat-number" style="color: #ffb366;">10+</span>
+                <div class="stat-label">New Creative Assets<br>To Produce</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Months 2-3 -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" class="logo">
+            <div class="slide-number">09</div>
+        </div>
+        <div class="section-title">90-Day Roadmap: Months Two and Three</div>
+        
+        <div class="two-column">
+            <div class="caution-block">
+                <h4>Month Two: Data-Driven Optimisation</h4>
+                <ul class="bullet-list">
+                    <li><strong>Performance Analysis:</strong> Identify top three performing creatives and increase allocation. Pause underperformers exceeding $15 CPA for five consecutive days. Analyse new versus returning customer acquisition mix.</li>
+                    <li><strong>Audience Expansion:</strong> Build one percent lookalike from purchaser base. Test interest stacking combining fitness and business. Expand geographic targeting to include New Zealand.</li>
+                    <li><strong>Content Club Repositioning:</strong> Test human-curated positioning against AI alternatives. Evaluate $27 first month trial offer. Warm remarketing campaign deployment only.</li>
+                </ul>
+            </div>
+            
+            <div class="opportunity-block">
+                <h4>Month Three: Scale and Systematise</h4>
+                <ul class="bullet-list">
+                    <li><strong>Budget Scaling (contingent on CPA targets):</strong> Total daily investment: $200 to $300 per day. 6-Week Challenge: $200 per day if CPA below $10. Sugar Detox: $60 per day maintenance.</li>
+                    <li><strong>Product Launch Preparation:</strong> Rotate new challenge if inventory permits. Develop upsell path from Sugar Detox to 6-Week.</li>
+                    <li><strong>June Challenge Planning:</strong> Pre-launch email list development. Creative production commencement. Timeline and budget allocation finalisation.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="performance-table">
+            <table>
+                <tr>
+                    <th class="text-left">Month</th>
+                    <th class="text-left">Focus</th>
+                    <th class="text-right">Budget</th>
+                    <th class="text-center">Target CPA</th>
+                    <th class="text-center">Expected Sales</th>
+                    <th class="text-left">Key Milestones</th>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Month One</strong></td>
+                    <td class="text-left">Reactivation and Quick Wins</td>
+                    <td class="text-right">$7,200</td>
+                    <td class="text-center">Under $15</td>
+                    <td class="text-center">200 to 250</td>
+                    <td class="text-left">6W profitable, Sugar Detox launched</td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Month Two</strong></td>
+                    <td class="text-left">Optimisation and Testing</td>
+                    <td class="text-right">$8,400</td>
+                    <td class="text-center">Under $12</td>
+                    <td class="text-center">300 to 350</td>
+                    <td class="text-left">Creative winners identified, CC repositioned</td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Month Three</strong></td>
+                    <td class="text-left">Scale and Systematise</td>
+                    <td class="text-right">$11,100</td>
+                    <td class="text-center">Under $10</td>
+                    <td class="text-center">400 to 500</td>
+                    <td class="text-left">$370 per day investment, June prep complete</td>
+                </tr>
+                <tr class="table-highlight-row">
+                    <td class="text-left"><strong>Total</strong></td>
+                    <td class="text-left"></td>
+                    <td class="text-right"><strong>$26,700</strong></td>
+                    <td class="text-center"><strong>$12 average</strong></td>
+                    <td class="text-center"><strong>900 to 1,100</strong></td>
+                    <td class="text-left"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Slide 10: Budget Allocation -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" class="logo">
+            <div class="slide-number">10</div>
+        </div>
+        <div class="section-title">Budget Allocation and Performance Projections</div>
+        
+        <div class="performance-table">
+            <table>
+                <tr>
+                    <th class="text-left">Campaign</th>
+                    <th class="text-right">Month One</th>
+                    <th class="text-right">Month Two</th>
+                    <th class="text-right">Month Three</th>
+                    <th class="text-right">90-Day Total</th>
+                    <th class="text-center">Target CPA</th>
+                </tr>
+                <tr class="table-green-row">
+                    <td class="text-left"><strong>6W Challenge (Warm)</strong></td>
+                    <td class="text-right">$3,000</td>
+                    <td class="text-right">$3,000</td>
+                    <td class="text-right">$4,500</td>
+                    <td class="text-right"><strong>$10,500</strong></td>
+                    <td class="text-center">$10</td>
+                </tr>
+                <tr style="background: rgba(40, 167, 69, 0.1);">
+                    <td class="text-left"><strong>6W Challenge (Cold)</strong></td>
+                    <td class="text-right">$1,800</td>
+                    <td class="text-right">$2,400</td>
+                    <td class="text-right">$3,000</td>
+                    <td class="text-right"><strong>$7,200</strong></td>
+                    <td class="text-center">$12</td>
+                </tr>
+                <tr class="table-purple-row">
+                    <td class="text-left"><strong>Sugar Detox</strong></td>
+                    <td class="text-right">$1,200</td>
+                    <td class="text-right">$1,800</td>
+                    <td class="text-right">$1,800</td>
+                    <td class="text-right"><strong>$4,800</strong></td>
+                    <td class="text-center">$8</td>
+                </tr>
+                <tr style="background: rgba(204, 91, 39, 0.12);">
+                    <td class="text-left"><strong>Coach Engine (Warm)</strong></td>
+                    <td class="text-right">$1,200</td>
+                    <td class="text-right">$1,200</td>
+                    <td class="text-right">$1,800</td>
+                    <td class="text-right"><strong>$4,200</strong></td>
+                    <td class="text-center">$15</td>
+                </tr>
+                <tr class="table-highlight-row">
+                    <td class="text-left"><strong>Total</strong></td>
+                    <td class="text-right"><strong>$7,200</strong></td>
+                    <td class="text-right"><strong>$8,400</strong></td>
+                    <td class="text-right"><strong>$11,100</strong></td>
+                    <td class="text-right"><strong>$26,700</strong></td>
+                    <td class="text-center"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="three-column">
+            <div class="content-block" style="border-color: #5dd879;">
+                <h4 style="color: #5dd879;">6-Week Challenge Allocation</h4>
+                <div style="font-size: 15px; margin-top: 14px; line-height: 1.7;">
+                    <strong>Portfolio Share:</strong> 66 percent<br><br>
+                    <strong>Rationale:</strong> Proven performer with strong upsell funnel. January represents peak acquisition window.
+                </div>
+                <div style="margin-top: 16px; font-size: 14px; color: #5dd879;">
+                    <strong>Projected:</strong> 600 to 800 conversions at $11 average CPA
+                </div>
+            </div>
+            
+            <div class="content-block" style="border-color: #a78bfa;">
+                <h4 style="color: #a78bfa;">Sugar Detox Allocation</h4>
+                <div style="font-size: 15px; margin-top: 14px; line-height: 1.7;">
+                    <strong>Portfolio Share:</strong> 18 percent<br><br>
+                    <strong>Rationale:</strong> New lead magnet testing. Start at $40 per day, scale to $60 per day once CPA validates.
+                </div>
+                <div style="margin-top: 16px; font-size: 14px; color: #a78bfa;">
+                    <strong>Projected:</strong> 200 to 300 conversions, broad targeting
+                </div>
+            </div>
+            
+            <div class="content-block" style="border-color: #ff7c4c;">
+                <h4 style="color: #ff7c4c;">Coach Engine Allocation</h4>
+                <div style="font-size: 15px; margin-top: 14px; line-height: 1.7;">
+                    <strong>Portfolio Share:</strong> 16 percent<br><br>
+                    <strong>Rationale:</strong> $40 per day warm remarketing matches operational baseline discussed.
+                </div>
+                <div style="margin-top: 16px; font-size: 14px; color: #ff7c4c;">
+                    <strong>Projected:</strong> 80 to 120 trial signups, warm traffic only
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card" style="border-color: #5dd879;">
+                <span class="stat-number" style="color: #5dd879;">800-1,000</span>
+                <div class="stat-label">Projected Sales<br>90-Day Total</div>
+            </div>
+            <div class="stat-card" style="border-color: #5bc0de;">
+                <span class="stat-number" style="color: #5bc0de;">$42,000+</span>
+                <div class="stat-label">Projected Revenue<br>At $52.60 AOV</div>
+            </div>
+            <div class="stat-card" style="border-color: #ffb366;">
+                <span class="stat-number" style="color: #ffb366;">1.6-2.0x</span>
+                <div class="stat-label">Projected ROAS<br>Blended Target</div>
+            </div>
+            <div class="stat-card" style="border-color: #ff7c4c;">
+                <span class="stat-number" style="color: #ff7c4c;">$52.60</span>
+                <div class="stat-label">CPA Required<br>for Break-Even</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Risk Assessment -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" class="logo">
+            <div class="slide-number">11</div>
+        </div>
+        <div class="section-title">Risk Assessment and Mitigation</div>
+        
+        <div class="performance-table">
+            <table>
+                <tr>
+                    <th class="text-left">Risk Category</th>
+                    <th class="text-left">Specific Risk</th>
+                    <th class="text-center">Impact</th>
+                    <th class="text-center">Probability</th>
+                    <th class="text-left">Mitigation Strategy</th>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Creative Fatigue</strong></td>
+                    <td class="text-left">Warm audience frequency at 5.54</td>
+                    <td class="text-center text-red"><strong>High</strong></td>
+                    <td class="text-center text-red"><strong>High</strong></td>
+                    <td class="text-left">Aggressive creative refresh in week one, 10 or more new assets by week three</td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Attribution Gap</strong></td>
+                    <td class="text-left">66 percent of sales not attributed</td>
+                    <td class="text-center text-orange"><strong>Medium</strong></td>
+                    <td class="text-center text-red"><strong>Confirmed</strong></td>
+                    <td class="text-left">Implement Conversions API, audit pixel placement, establish manual tracking</td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Seasonal Decline</strong></td>
+                    <td class="text-left">Post-January demand reduction</td>
+                    <td class="text-center text-orange"><strong>Medium</strong></td>
+                    <td class="text-center text-orange"><strong>Medium</strong></td>
+                    <td class="text-left">Front-load January investment, transition to evergreen messaging in February</td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Cold Traffic CPA</strong></td>
+                    <td class="text-left">New audiences underperforming</td>
+                    <td class="text-center text-orange"><strong>Medium</strong></td>
+                    <td class="text-center text-orange"><strong>Medium</strong></td>
+                    <td class="text-left">Deploy proven Opened campaign structure, scale incrementally</td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Content Club</strong></td>
+                    <td class="text-left">Recurring model resistance</td>
+                    <td class="text-center text-yellow"><strong>Low</strong></td>
+                    <td class="text-center text-orange"><strong>Medium</strong></td>
+                    <td class="text-left">Test reduced trial price, position against AI, warm traffic only</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="two-column">
+            <div class="issue-block">
+                <h4>Critical Monitoring Metrics</h4>
+                <ul class="bullet-list">
+                    <li><strong>CPA Threshold:</strong> Alert if any campaign exceeds $15 for three consecutive days</li>
+                    <li><strong>Frequency Ceiling:</strong> Pause ad set if frequency exceeds 4.0</li>
+                    <li><strong>CTR Floor:</strong> Pause creative if click-through rate falls below 0.8 percent</li>
+                    <li><strong>Customer Mix:</strong> Target minimum 40 percent new customers</li>
+                    <li><strong>Sales Reconciliation:</strong> Cross-reference tracker weekly</li>
+                </ul>
+            </div>
+            
+            <div class="content-block">
+                <h4>Performance Escalation Protocol</h4>
+                <div style="font-size: 16px; margin-top: 18px;">
+                    <div style="padding: 16px 20px; background: rgba(93, 216, 121, 0.2); border-radius: 10px; margin-bottom: 16px;">
+                        <strong style="color: #5dd879;">Green Status:</strong> CPA below $12, frequency below 3.5. Action: Scale budget 20 percent.
+                    </div>
+                    <div style="padding: 16px 20px; background: rgba(255, 179, 102, 0.2); border-radius: 10px; margin-bottom: 16px;">
+                        <strong style="color: #ffb366;">Yellow Status:</strong> CPA $12 to $18, frequency 3.5 to 5. Action: Creative refresh, audience testing.
+                    </div>
+                    <div style="padding: 16px 20px; background: rgba(255, 107, 122, 0.2); border-radius: 10px;">
+                        <strong style="color: #ff6b7a;">Red Status:</strong> CPA above $18, frequency above 5. Action: Pause, diagnose, restructure.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Final Recommendations -->
+    <div class="slide">
+        <div class="slide-header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" class="logo">
+            <div class="slide-number">12</div>
+        </div>
+        <div class="main-title" style="font-size: 2.8em;">Strategic Recommendations</div>
+        <div class="subtitle">Immediate Action Plan for January 2026</div>
+        
+        <div class="highlight-box">
+            <h3>Recommended for Immediate Implementation</h3>
+            <div class="two-column" style="text-align: left; margin-top: 22px;">
+                <div>
+                    <ul class="bullet-list">
+                        <li>Reactivate 6-Week Challenge using Opened structure at $160 per day</li>
+                        <li>Implement purchaser exclusions via confirmation page audiences</li>
+                        <li>Add Canada to all geographic targeting immediately</li>
+                        <li>Deploy HeyGen video version two with close-up opening</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="bullet-list">
+                        <li>Launch Sugar Detox cold campaign at $40 per day by week two</li>
+                        <li>Implement Conversions API for accurate attribution</li>
+                        <li>Complete Coach Engine creative redesign with lighter aesthetic</li>
+                        <li>Establish weekly reporting cadence</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="performance-table">
+            <table>
+                <tr>
+                    <th class="text-left" style="background: #cc5b27;">Performance Metric</th>
+                    <th class="text-center" style="background: #cc5b27;">Current State</th>
+                    <th class="text-center" style="background: #cc5b27;">Month One Target</th>
+                    <th class="text-center" style="background: #cc5b27;">Month Three Target</th>
+                    <th class="text-center" style="background: #cc5b27;">Improvement</th>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Blended CPA</strong></td>
+                    <td class="text-center">$18.35</td>
+                    <td class="text-center">$15.00</td>
+                    <td class="text-center">$10.00</td>
+                    <td class="text-center text-green"><strong>45% reduction</strong></td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Monthly Sales</strong></td>
+                    <td class="text-center">Approximately 90 (20 days)</td>
+                    <td class="text-center">200 to 250</td>
+                    <td class="text-center">400 to 500</td>
+                    <td class="text-center text-green"><strong>340% increase</strong></td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>New Customer Rate</strong></td>
+                    <td class="text-center">27%</td>
+                    <td class="text-center">35%</td>
+                    <td class="text-center">45%</td>
+                    <td class="text-center text-green"><strong>67% increase</strong></td>
+                </tr>
+                <tr>
+                    <td class="text-left"><strong>Coach Engine Trials</strong></td>
+                    <td class="text-center">3 (period)</td>
+                    <td class="text-center">15 to 20</td>
+                    <td class="text-center">30 to 40</td>
+                    <td class="text-center text-green"><strong>10x increase</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card" style="border-color: #5dd879;">
+                <span class="stat-number" style="color: #5dd879;">900-1,100</span>
+                <div class="stat-label">90-Day Sales Target</div>
+            </div>
+            <div class="stat-card" style="border-color: #5bc0de;">
+                <span class="stat-number" style="color: #5bc0de;">$47,000+</span>
+                <div class="stat-label">Projected Revenue</div>
+            </div>
+            <div class="stat-card" style="border-color: #ffb366;">
+                <span class="stat-number" style="color: #ffb366;">1.8x</span>
+                <div class="stat-label">Target ROAS</div>
+            </div>
+            <div class="stat-card" style="border-color: #ff7c4c;">
+                <span class="stat-number" style="color: #ff7c4c;">50-80</span>
+                <div class="stat-label">New Coach Engine Trials</div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <div style="font-size: 1.5em; margin-bottom: 22px;">
+                <strong>Ready for Immediate Execution</strong>
+            </div>
+            <div style="font-size: 1.1em; line-height: 1.9;">
+                <strong>Strategic Objectives:</strong> Coach Engine 230 to 500 members | Content Club stabilisation | 6-Week Challenge reactivation<br>
+                <strong>Investment:</strong> $26,700 over 90 days | <strong>Projected Return:</strong> $47,000+ gross revenue at 1.8x ROAS<br>
+                <strong>Timing:</strong> January represents peak acquisition window for fitness coaching products
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
