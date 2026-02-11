@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fit Pro Essentials | 30-Day Performance Review & Strategic Roadmap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #1a1a2e;
+            --bg-card: #16162a;
+            --bg-card-hover: #1e1e3a;
+            --border: rgba(255,255,255,0.06);
+            --accent-green: #00d9a5;
+            --accent-green-dim: rgba(0, 217, 165, 0.15);
+            --accent-purple: #8b5cf6;
+            --accent-purple-dim: rgba(139, 92, 246, 0.15);
+            --accent-blue: #3b82f6;
+            --accent-pink: #ec4899;
+            --accent-red: #ef4444;
+            --accent-orange: #f59e0b;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b8;
+            --text-muted: #6b6b80;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        .slide {
+            min-height: 100vh;
+            padding: 48px 64px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid var(--border);
+        }
+        .slide-number {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .slide-tag {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-green);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        h1 { font-family: 'DM Sans', sans-serif; font-size: 52px; font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
+        h2 { font-family: 'DM Sans', sans-serif; font-size: 36px; font-weight: 700; margin-bottom: 28px; }
+        h3 { font-size: 18px; font-weight: 600; margin-bottom: 16px; }
+        h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+        p { font-size: 15px; color: var(--text-secondary); max-width: 720px; }
+        .subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin-bottom: 32px; }
+        .cover {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 80%, rgba(0, 217, 165, 0.05) 0%, transparent 40%);
+        }
+        .cover h1 { font-size: 56px; }
+        .cover .meta { margin-top: 48px; display: flex; gap: 48px; font-size: 13px; color: var(--text-secondary); justify-content: center; flex-wrap: wrap; }
+        .cover .meta span { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border); }
+        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0; }
+        .metric-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+        .metric-card.green { border-top: 3px solid var(--accent-green); }
+        .metric-card.purple { border-top: 3px solid var(--accent-purple); }
+        .metric-card.red { border-top: 3px solid var(--accent-red); }
+        .metric-card.orange { border-top: 3px solid var(--accent-orange); }
+        .metric-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 8px; font-weight: 500; }
+        .metric-value { font-family: 'DM Sans', sans-serif; font-size: 32px; font-weight: 700; line-height: 1.1; }
+        .metric-value.large { font-size: 40px; }
+        .metric-change { font-size: 12px; margin-top: 8px; font-weight: 600; }
+        .metric-change.up { color: var(--accent-green); }
+        .metric-change.down { color: var(--accent-red); }
+        .metric-change.neutral { color: var(--text-muted); }
+        .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+        .data-table th { text-align: left; padding: 12px 16px; background: var(--bg-card); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+        .data-table th.text-right { text-align: right; }
+        .data-table th.text-center { text-align: center; }
+        .data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+        .data-table td.text-right { text-align: right; }
+        .data-table td.text-center { text-align: center; }
+        .data-table tr:hover td { background: var(--bg-card-hover); }
+        .data-table .highlight { color: var(--text-primary); font-weight: 500; }
+        .data-table .green { color: var(--accent-green); font-weight: 600; }
+        .data-table .red { color: var(--accent-red); font-weight: 600; }
+        .data-table .purple { color: var(--accent-purple); font-weight: 600; }
+        .data-table .orange { color: var(--accent-orange); font-weight: 600; }
+        .data-table tr.total-row { background: var(--bg-card); }
+        .data-table tr.total-row td { font-weight: 600; color: var(--text-primary); }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px; }
+        .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+        .insight-box { background: var(--bg-card); border-left: 3px solid var(--accent-green); padding: 20px 24px; margin: 24px 0; border-radius: 0 12px 12px 0; }
+        .insight-box.purple { border-left-color: var(--accent-purple); }
+        .insight-box.red { border-left-color: var(--accent-red); }
+        .insight-box.orange { border-left-color: var(--accent-orange); }
+        .insight-box h4 { color: var(--accent-green); margin-bottom: 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .insight-box.purple h4 { color: var(--accent-purple); }
+        .insight-box.red h4 { color: var(--accent-red); }
+        .insight-box.orange h4 { color: var(--accent-orange); }
+        .insight-box p { color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
+        .progress-container { margin: 12px 0; }
+        .progress-label { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; color: var(--text-secondary); }
+        .progress-label .value { color: var(--text-primary); font-weight: 600; }
+        .progress-bar { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 3px; }
+        .progress-fill.green { background: var(--accent-green); }
+        .progress-fill.purple { background: var(--accent-purple); }
+        .progress-fill.red { background: var(--accent-red); }
+        .progress-fill.orange { background: var(--accent-orange); }
+        .timeline { position: relative; padding-left: 32px; margin: 24px 0; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 4px; bottom: 4px; width: 2px; background: linear-gradient(to bottom, var(--accent-purple), var(--accent-green)); border-radius: 1px; }
+        .timeline-item { position: relative; margin-bottom: 28px; }
+        .timeline-item::before { content: ''; position: absolute; left: -28px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-purple); border: 2px solid var(--bg-primary); }
+        .timeline-week { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-green); margin-bottom: 6px; font-weight: 600; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+        .card.green-border { border-top: 3px solid var(--accent-green); }
+        .card.purple-border { border-top: 3px solid var(--accent-purple); }
+        .card.red-border { border-top: 3px solid var(--accent-red); }
+        .card.orange-border { border-top: 3px solid var(--accent-orange); }
+        .tag { display: inline-block; padding: 4px 10px; background: var(--accent-purple-dim); border-radius: 6px; font-size: 10px; font-weight: 600; color: var(--accent-purple); margin-right: 6px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tag.green { background: var(--accent-green-dim); color: var(--accent-green); }
+        .tag.red { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); }
+        .tag.orange { background: rgba(245, 158, 11, 0.15); color: var(--accent-orange); }
+        .check-list { list-style: none; margin: 16px 0; }
+        .check-list li { padding: 8px 0; padding-left: 24px; position: relative; color: var(--text-secondary); font-size: 14px; }
+        .check-list li::before { content: ''; position: absolute; left: 0; top: 12px; width: 8px; height: 8px; border-radius: 2px; background: var(--accent-green); }
+        .check-list li.red::before { background: var(--accent-red); }
+        .check-list li.orange::before { background: var(--accent-orange); }
+        .reporting-gap { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 24px 0; }
+        .gap-header { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .gap-indicator { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+        .gap-label { width: 100px; font-size: 13px; color: var(--text-secondary); }
+        .gap-bar { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; }
+        .gap-fill { height: 100%; border-radius: 4px; }
+        .gap-value { width: 100px; text-align: right; font-weight: 600; font-size: 14px; }
+        .tracked-more { background: var(--accent-green-dim); color: var(--accent-green); padding: 12px 16px; border-radius: 8px; margin-top: 16px; font-size: 13px; font-weight: 600; }
+        .tracked-red { background: rgba(239, 68, 68, 0.1); color: var(--accent-red); padding: 12px 16px; border-radius: 8px; margin-top: 16px; font-size: 13px; font-weight: 600; }
+        .slide-footer { margin-top: auto; padding-top: 32px; font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+        .slide-footer img { height: 24px; opacity: 0.6; }
+        .vs-bar { display: flex; align-items: center; gap: 16px; margin: 8px 0; }
+        .vs-label { width: 80px; font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+        .vs-value { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 20px; min-width: 80px; }
+        .vs-change { font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+        @media print { .slide { page-break-after: always; } }
+        @media (max-width: 1200px) { .three-col { grid-template-columns: 1fr 1fr; } .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .slide { padding: 32px; } h1 { font-size: 36px; } h2 { font-size: 28px; } .two-col, .three-col { grid-template-columns: 1fr; } .cover .meta { flex-direction: column; gap: 16px; } }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1: Cover -->
+<section class="slide cover">
+    <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" style="width: 180px; margin-bottom: 48px; opacity: 0.9;">
+    <div class="slide-tag">30-Day Performance Review & KPI Assessment</div>
+    <h1>Fit Pro Essentials</h1>
+    <p class="subtitle">Deep Analysis: Jan 12 to Feb 10, 2026  | Benchmarked Against Pre-Takeover Audit</p>
+    <div class="meta">
+        <span>February 11, 2026</span>
+        <span>Period: 30 Days</span>
+        <span>Total Spend: $3,900.81</span>
+        <span>Confirmed Sales: 88</span>
+    </div>
+</section>
+
+<!-- SLIDE 2: Executive Summary & Benchmark -->
+<section class="slide">
+    <span class="slide-number">02 / 14</span>
+    <div class="slide-tag">Executive Summary</div>
+    <h2>30-Day Performance vs Pre-Takeover Benchmark</h2>
+
+    <div class="metrics-grid">
+        <div class="metric-card red">
+            <div class="metric-label">Total Ad Spend</div>
+            <div class="metric-value">$3,901</div>
+            <div class="metric-change down">vs $569 prior period</div>
+        </div>
+        <div class="metric-card orange">
+            <div class="metric-label">Confirmed Sales</div>
+            <div class="metric-value">88</div>
+            <div class="metric-change down">vs 90 prior (in 20 days)</div>
+        </div>
+        <div class="metric-card red">
+            <div class="metric-label">Confirmed CPA</div>
+            <div class="metric-value">$44.33</div>
+            <div class="metric-change down">vs $6.32 prior (↑601%)</div>
+        </div>
+        <div class="metric-card red">
+            <div class="metric-label">Confirmed ROAS</div>
+            <div class="metric-value">0.82x</div>
+            <div class="metric-change down">vs 8.29x prior</div>
+        </div>
+    </div>
+
+    <div class="two-col">
+        <div>
+            <h3>Where We Improved</h3>
+            <ul class="check-list">
+                <li>New customer rate: 27.8% → 64.8% for 6WK (↑133%)</li>
+                <li>Order bump take rate: 16.7% → 24.1% for 6WK (↑44%)</li>
+                <li>Upsell take rate: 20.0% → 24.1% for 6WK (↑21%)</li>
+                <li>Sugar Detox launched: 34 sales, 47.1% OB take rate</li>
+                <li>New product funnel validated at $7/$12 entry point</li>
+                <li>Proactive creative testing: 20+ new assets deployed</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Critical Concerns</h3>
+            <ul class="check-list">
+                <li class="red">CPA escalated 601% vs benchmark ($6.32 → $44.33)</li>
+                <li class="red">ROAS collapsed from 8.29x to 0.82x (losing money)</li>
+                <li class="red">5-day dead zone: Jan 22-26, zero sales, full ad spend</li>
+                <li class="red">Daily sales velocity: 4.5/day → 2.9/day (↓35%)</li>
+                <li class="red">6WK cold CPA at $55.32 (target was under $15)</li>
+                <li class="red">Warm audience saturated: frequency hit 4.59 then paused</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="insight-box red" style="margin-top: 24px;">
+        <h4>Critical Assessment</h4>
+        <p>The account is currently operating at a loss. Confirmed ROAS of 0.82x means we are spending $1.22 for every $1.00 returned. The pre-takeover benchmark achieved 8.29x ROAS with just $569 in spend, generating 90 confirmed sales in 20 days. The current 30-day period has spent 6.9x more ($3,901) but generated fewer total sales (88) at much worse unit economics. However, real improvements in funnel conversion rates (OB +44%, upsell +21%) and new customer acquisition (27.8% → 64.8%) show the backend is in better shape, and the Sugar Detox launch is a solid step forward. The core issue is front-end acquisition cost efficiency.</p>
+    </div>
+
+    <div class="slide-footer">
+        <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media">
+        <span></span>
+        <span>02 / 14</span>
+    </div>
+</section>
+
+<!-- SLIDE 3: KPI Benchmark Table -->
+<section class="slide">
+    <span class="slide-number">03 / 14</span>
+    <div class="slide-tag">KPI Benchmark</div>
+    <h2>Head-to-Head: Pre-Takeover vs Current Management</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>KPI Metric</th>
+                <th class="text-center">Pre-Takeover Audit<br><small style="color:var(--accent-purple)">Dec 18 - Jan 7 (20 days)</small></th>
+                <th class="text-center">Current Period<br><small style="color:var(--accent-green)">Jan 12 - Feb 10 (30 days)</small></th>
+                <th class="text-center">Delta</th>
+                <th class="text-center">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td class="highlight">Total Ad Spend</td><td class="text-center">$568.80</td><td class="text-center">$3,900.81</td><td class="text-center red">+586%</td><td class="text-center"><span class="tag red">Over</span></td></tr>
+            <tr><td class="highlight">Confirmed Sales</td><td class="text-center">90</td><td class="text-center">88</td><td class="text-center red">-2.2%</td><td class="text-center"><span class="tag orange">Flat</span></td></tr>
+            <tr><td class="highlight">Confirmed Revenue</td><td class="text-center">$4,717.80</td><td class="text-center">$3,192.20</td><td class="text-center red">-32.3%</td><td class="text-center"><span class="tag red">Down</span></td></tr>
+            <tr><td class="highlight">Confirmed CPA</td><td class="text-center green">$6.32</td><td class="text-center red">$44.33</td><td class="text-center red">+601%</td><td class="text-center"><span class="tag red">Critical</span></td></tr>
+            <tr><td class="highlight">Confirmed ROAS</td><td class="text-center green">8.29x</td><td class="text-center red">0.82x</td><td class="text-center red">-90.1%</td><td class="text-center"><span class="tag red">Critical</span></td></tr>
+            <tr><td class="highlight">Daily Sales Velocity</td><td class="text-center">4.5/day</td><td class="text-center">2.9/day</td><td class="text-center red">-35%</td><td class="text-center"><span class="tag red">Down</span></td></tr>
+            <tr><td class="highlight">New Customer Rate</td><td class="text-center">27.8%</td><td class="text-center">64.8% (6WK)</td><td class="text-center green">+133%</td><td class="text-center"><span class="tag green">Strong</span></td></tr>
+            <tr><td class="highlight">Average Order Value</td><td class="text-center">$52.42</td><td class="text-center">$50.50 (6WK)</td><td class="text-center orange">-3.7%</td><td class="text-center"><span class="tag orange">Stable</span></td></tr>
+            <tr><td class="highlight">OB Take Rate</td><td class="text-center">16.7%</td><td class="text-center">24.1% (6WK)</td><td class="text-center green">+44%</td><td class="text-center"><span class="tag green">Up</span></td></tr>
+            <tr><td class="highlight">Upsell Take Rate</td><td class="text-center">20.0%</td><td class="text-center">24.1% (6WK)</td><td class="text-center green">+21%</td><td class="text-center"><span class="tag green">Up</span></td></tr>
+            <tr><td class="highlight">Meta vs Confirmed Gap</td><td class="text-center">31 vs 90 (66% gap)</td><td class="text-center">84 vs 88 (5% gap)</td><td class="text-center green">Attribution fixed</td><td class="text-center"><span class="tag green">Resolved</span></td></tr>
+        </tbody>
+    </table>
+
+    <div class="insight-box purple">
+        <h4>Audit Target vs Actual</h4>
+        <p>The original audit projected Month One targets of $7,200 spend, under $15 CPA, and 200-250 sales. Actual results: $3,901 spend (54% of budget), $44.33 CPA (195% over target), and 88 sales (35-44% of target). The audit's Month One CPA target has been missed by a factor of 3x. The Q1 revenue target of $47,000+ would require a dramatic acceleration from the current $3,192 run rate.</p>
+    </div>
+
+    <div class="slide-footer">
+        <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media">
+        <span></span>
+        <span>03 / 14</span>
+    </div>
+</section>
+
+<!-- SLIDE 4: Campaign Performance Deep Dive -->
+<section class="slide">
+    <span class="slide-number">04 / 14</span>
+    <div class="slide-tag">Campaign Analysis</div>
+    <h2>Campaign-Level Performance: Meta Ads Manager Data</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Campaign / Ad Set</th>
+                <th class="text-right">Spend</th>
+                <th class="text-center">Impressions</th>
+                <th class="text-center">Reach</th>
+                <th class="text-center">Freq.</th>
+                <th class="text-center">Link CTR</th>
+                <th class="text-center">CPC</th>
+                <th class="text-center">Meta Purch.</th>
+                <th class="text-right">Meta CPA</th>
+                <th class="text-center">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background: var(--bg-card);"><td class="highlight" colspan="10">6-WEEK CHALLENGE CAMPAIGN | Total: $2,987.21 | 56 Meta Purchases | $53.34 CPA</td></tr>
+            <tr>
+                <td>&nbsp;&nbsp;Cold | Broad | USA UK AUS CA | $60</td>
+                <td class="text-right">$2,663.69</td>
+                <td class="text-center">65,221</td>
+                <td class="text-center">14,941</td>
+                <td class="text-center orange">4.37</td>
+                <td class="text-center">1.22%</td>
+                <td class="text-center">$3.35</td>
+                <td class="text-center">50</td>
+                <td class="text-right red">$53.27</td>
+                <td class="text-center"><span class="tag green">Active</span></td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;Warm | USA UK AUS CA | $50</td>
+                <td class="text-right">$178.20</td>
+                <td class="text-center">3,084</td>
+                <td class="text-center">1,126</td>
+                <td class="text-center orange">2.74</td>
+                <td class="text-center">1.65%</td>
+                <td class="text-center">$3.49</td>
+                <td class="text-center">3</td>
+                <td class="text-right red">$59.40</td>
+                <td class="text-center"><span class="tag red">Paused</span></td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;Cold | USA UK AUS CA NZ | $30</td>
+                <td class="text-right">$145.32</td>
+                <td class="text-center">3,515</td>
+                <td class="text-center">1,923</td>
+                <td class="text-center">1.83</td>
+                <td class="text-center">1.08%</td>
+                <td class="text-center">$3.82</td>
+                <td class="text-center">3</td>
+                <td class="text-right red">$48.44</td>
+                <td class="text-center"><span class="tag green">Active</span></td>
+            </tr>
+
+            <tr style="background: var(--bg-card);"><td class="highlight" colspan="10">SUGAR DETOX CAMPAIGN | Total: $913.60 | 28 Meta Purchases | $32.63 CPA</td></tr>
+            <tr>
+                <td>&nbsp;&nbsp;Warm | Broad | USA UK AUS CA</td>
+                <td class="text-right">$607.12</td>
+                <td class="text-center">17,833</td>
+                <td class="text-center">2,370</td>
+                <td class="text-center red">7.52</td>
+                <td class="text-center">1.12%</td>
+                <td class="text-center">$3.04</td>
+                <td class="text-center">22</td>
+                <td class="text-right orange">$27.60</td>
+                <td class="text-center"><span class="tag green">Active</span></td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;Cold | Broad | USA UK AUS CA | $60</td>
+                <td class="text-right">$306.48</td>
+                <td class="text-center">7,672</td>
+                <td class="text-center">3,042</td>
+                <td class="text-center">2.52</td>
+                <td class="text-center">1.34%</td>
+                <td class="text-center">$2.98</td>
+                <td class="text-center">6</td>
+                <td class="text-right red">$51.08</td>
+                <td class="text-center"><span class="tag green">Active</span></td>
+            </tr>
+
+            <tr class="total-row">
+                <td class="highlight">TOTAL</td>
+                <td class="text-right">$3,900.81</td>
+                <td class="text-center">97,325</td>
+                <td class="text-center">-</td>
+                <td class="text-center">-</td>
+                <td class="text-center">1.22%</td>
+                <td class="text-center">$3.28</td>
+                <td class="text-center">84</td>
+                <td class="text-right red">$46.44</td>
+                <td class="text-center"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="two-col">
+        <div class="insight-box red">
+            <h4>6WK Cold Main Ad Set: $2,664 Spend</h4>
+            <p>This single ad set consumed 68% of total budget. Frequency at 4.37 indicates creative fatigue within a broad targeting setup. 50 Meta purchases at $53.27 CPA vs the audit target of under $15. The original "Opened" structure that Julia used has been changed multiple times with multiple audience and creative changes that triggered repeated learning phase resets.</p>
+        </div>
+        <div class="insight-box orange">
+            <h4>Sugar Detox Warm: Frequency at 7.52</h4>
+            <p>The warm audience is saturated . The same pool of 2,370 people seeing ads 7.5 times each. While this ad set has 22 of the 28 Sugar Detox purchases, it's showing diminishing returns. The warm audience is carrying the Sugar Detox campaign but approaching exhaustion.</p>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media">
+        <span></span>
+        <span>04 / 14</span>
+    </div>
+</section>
+
+<!-- SLIDE 5: Phase Analysis -->
+<section class="slide">
+    <span class="slide-number">05 / 14</span>
+    <div class="slide-tag">Phase Analysis</div>
+    <h2>6-Week Challenge: Three Distinct Performance Phases</h2>
+
+    <div class="three-col">
+        <div class="card green-border">
+            <h4 style="color: var(--accent-green);">Phase 1: Strong Start</h4>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Jan 12-21 (10 days)</p>
+            <table class="data-table" style="margin: 0;">
+                <tr><td>Confirmed Sales</td><td class="text-right green">26</td></tr>
+                <tr><td>Daily Velocity</td><td class="text-right green">2.6/day</td></tr>
+                <tr><td>Revenue</td><td class="text-right">$1,471</td></tr>
+                <tr><td>New Customers</td><td class="text-right">15 (57.7%)</td></tr>
+            </table>
+            <p style="font-size: 12px; margin-top: 12px;">Cold campaign relaunched at $60/day using original Opened structure. Solid first 10 days with consistent daily conversions. Meta reported 7 purchases during this period with CPA trending toward $15 target.</p>
+        </div>
+        <div class="card red-border">
+            <h4 style="color: var(--accent-red);">Phase 2: Dead Zone</h4>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Jan 22-26 (5 days)</p>
+            <table class="data-table" style="margin: 0;">
+                <tr><td>Confirmed Sales</td><td class="text-right red">0</td></tr>
+                <tr><td>Daily Velocity</td><td class="text-right red">0/day</td></tr>
+                <tr><td>Revenue</td><td class="text-right red">$0</td></tr>
+                <tr><td>Estimated Wasted Spend</td><td class="text-right red">$300-400 (est.)</td></tr>
+            </table>
+            <p style="font-size: 12px; margin-top: 12px;">Complete sales stoppage despite continued ad spend. Facebook account access issues made it worse. Budget could not be paused or adjusted during this critical period. Lost 5 days of momentum and spend.</p>
+        </div>
+        <div class="card orange-border">
+            <h4 style="color: var(--accent-orange);">Phase 3: Relaunch & Struggle</h4>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Jan 27 to Feb 10 (15 days)</p>
+            <table class="data-table" style="margin: 0;">
+                <tr><td>Confirmed Sales</td><td class="text-right orange">28</td></tr>
+                <tr><td>Daily Velocity</td><td class="text-right orange">1.9/day</td></tr>
+                <tr><td>Revenue</td><td class="text-right">$1,256</td></tr>
+                <tr><td>New Customers</td><td class="text-right">20 (71.4%)</td></tr>
+            </table>
+            <p style="font-size: 12px; margin-top: 12px;">Relaunched with warm + cold ad sets, new HeyGen videos, new statics. Multiple creative and audience changes triggered repeated learning resets. CPA climbed to $46-68. Warm paused due to $58+ CPA.</p>
+        </div>
+    </div>
+
+    <div class="insight-box red" style="margin-top: 32px;">
+        <h4>Root Cause Analysis: Why Performance Declined</h4>
+        <p>Four things went wrong at once: (1) Facebook account lockout during Jan 22-26 prevented budget management and optimization during a critical period; (2) Multiple simultaneous changes on Jan 27 relaunch (new ad sets, new audiences, new creative, budget changes) all triggered learning phase resets; (3) Warm audience saturation accelerated by the 5-day gap where spend continued without optimization; (4) We were testing a lot of creative but stacking too many changes at once, so we could not tell what was actually working and what was not. The original Opened structure that delivered $8-10 CPAs was not preserved through the transition.</p>
+    </div>
+
+    <div class="slide-footer">
+        <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media">
+        <span></span>
+        <span>05 / 14</span>
+    </div>
+</section>
+
+<!-- SLIDE 6: Revenue & Funnel Analysis -->
+<section class="slide">
+    <span class="slide-number">06 / 14</span>
+    <div class="slide-tag">Revenue Analysis</div>
+    <h2>Confirmed Revenue & Funnel Performance</h2>
+
+    <div class="two-col">
+        <div>
+            <h3>6-Week Challenge: Confirmed Sales Tracker</h3>
+            <table class="data-table">
+                <tr><td>Confirmed Sales</td><td class="text-right highlight">54</td></tr>
+                <tr><td>Challenge Revenue ($27 × 54)</td><td class="text-right">$1,458.00</td></tr>
+                <tr><td>Order Bump ($17 × 13)</td><td class="text-right">$221.00</td></tr>
+                <tr><td>Upsells (8 × $79 + 5 × $67)</td><td class="text-right">$967.00</td></tr>
+                <tr><td>CE Trials ($1 × 2)</td><td class="text-right">$2.00</td></tr>
+                <tr><td>Other Revenue</td><td class="text-right">$79.20</td></tr>
+                <tr class="total-row"><td class="highlight">Total 6WK Revenue</td><td class="text-right green">$2,727.20</td></tr>
+                <tr><td>Ad Spend</td><td class="text-right red">$2,987.21</td></tr>
+                <tr class="total-row"><td class="highlight">Net P&L</td><td class="text-right red">-$260.01</td></tr>
+            </table>
+        </div>
+        <div>
+            <h3>Sugar Detox: Confirmed Sales Tracker</h3>
+            <table class="data-table">
+                <tr><td>Confirmed Sales</td><td class="text-right highlight">34</td></tr>
+                <tr><td>Detox Revenue (mix $12/$7)</td><td class="text-right">$353.00</td></tr>
+                <tr><td>Order Bump / Ads Kit ($7 × 16)</td><td class="text-right">$112.00</td></tr>
+                <tr><td>CE Trials</td><td class="text-right">$0</td></tr>
+                <tr><td>Other Revenue</td><td class="text-right">$0</td></tr>
+                <tr class="total-row"><td class="highlight">Total SD Revenue</td><td class="text-right orange">$465.00</td></tr>
+                <tr><td>Ad Spend</td><td class="text-right red">$913.60</td></tr>
+                <tr class="total-row"><td class="highlight">Net P&L</td><td class="text-right red">-$448.60</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="metrics-grid" style="margin-top: 24px;">
+        <div class="metric-card orange">
+            <div class="metric-label">6WK AOV</div>
+            <div class="metric-value">$50.50</div>
+            <div class="metric-change neutral">vs $52.42 benchmark</div>
+        </div>
+        <div class="metric-card green">
+            <div class="metric-label">6WK OB Take Rate</div>
+            <div class="metric-value">24.1%</div>
+            <div class="metric-change up">vs 16.7% benchmark (↑44%)</div>
+        </div>
+        <div class="metric-card green">
+            <div class="metric-label">SD OB Take Rate</div>
+            <div class="metric-value">47.1%</div>
+            <div class="metric-change up">Strong for new product</div>
+        </div>
+        <div class="metric-card green">
+            <div class="metric-label">6WK New Customer %</div>
+            <div class="metric-value">64.8%</div>
+            <div class="metric-change up">vs 27.8% benchmark (↑133%)</div>
+        </div>
+    </div>
+
+    <div class="reporting-gap">
+        <div class="gap-header">Combined 30-Day P&L</div>
+        <div class="gap-indicator">
+            <div class="gap-label">Revenue</div>
+            <div class="gap-bar"><div class="gap-fill" style="width: 82%; background: var(--accent-green);"></div></div>
+            <div class="gap-value" style="color: var(--accent-green);">$3,192.20</div>
+        </div>
+        <div class="gap-indicator">
+            <div class="gap-label">Ad Spend</div>
+            <div class="gap-bar"><div class="gap-fill" style="width: 100%; background: var(--accent-red);"></div></div>
+            <div class="gap-value" style="color: var(--accent-red);">$3,900.81</div>
+        </div>
+        <div class="tracked-red">Net Loss: -$708.61 on front-end ad spend (excludes backend LTV from CE upgrades)</div>
+    </div>
+
+    <div class="slide-footer">
+        <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media">
+        <span></span>
+        <span>06 / 14</span>
+    </div>
+</section>
+
+<!-- SLIDE 7: Creative Performance (Motion Analytics) -->
+<section class="slide">
+    <span class="slide-number">07 / 14</span>
+    <div class="slide-tag">Creative Analysis | Motion Analytics</div>
+    <h2>Top Performing Creative Assets</h2>
+
+    <h3>Static Creative | Ranked by CPA</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Creative</th>
+                <th class="text-right">Spend</th>
+                <th class="text-center">Purchases</th>
+                <th class="text-right">CPA</th>
+                <th class="text-center">ROAS</th>
+                <th class="text-center">CTR</th>
+                <th class="text-center">Click→Purchase</th>
+                <th class="text-center">Convert Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td class="highlight">STATIC 2: "Everything for Just $12"</td><td class="text-right">$23.53</td><td class="text-center green">2</td><td class="text-right green">$11.77</td><td class="text-center green">2.29x</td><td class="text-center">0.50%</td><td class="text-center green">50.0%</td><td class="text-center">-</td></tr>
+            <tr><td class="highlight">STATIC 2 $7 Refresh (Warm)</td><td class="text-right">$38.93</td><td class="text-center green">3</td><td class="text-right green">$12.98</td><td class="text-center">0.92x</td><td class="text-center green">2.18%</td><td class="text-center">14.3%</td><td class="text-center">-</td></tr>
+            <tr><td class="highlight">STATIC 5 Flash Sale Fitness Coaches</td><td class="text-right">$69.31</td><td class="text-center green">5</td><td class="text-right green">$13.86</td><td class="text-center">0.87x</td><td class="text-center">1.23%</td><td class="text-center">15.2%</td><td class="text-center green">100</td></tr>
+            <tr><td class="highlight">STATIC 4 $7 Refresh (Warm)</td><td class="text-right">$17.57</td><td class="text-center">1</td><td class="text-right orange">$17.57</td><td class="text-center">0.68x</td><td class="text-center">1.06%</td><td class="text-center">25.0%</td><td class="text-center">-</td></tr>
+            <tr><td class="highlight">Image Ad 3</td><td class="text-right">$156.25</td><td class="text-center">6</td><td class="text-right orange">$26.04</td><td class="text-center">0.94x</td><td class="text-center">1.15%</td><td class="text-center">14.6%</td><td class="text-center green">100</td></tr>
+            <tr><td class="highlight">STATIC 1 $7 Refresh (Warm)</td><td class="text-right">$145.85</td><td class="text-center">5</td><td class="text-right orange">$29.17</td><td class="text-center">0.62x</td><td class="text-center">0.93%</td><td class="text-center">12.2%</td><td class="text-center">87</td></tr>
+        </tbody>
+    </table>
+
+    <h3 style="margin-top: 24px;">Video Creative | Motion Analytics</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Creative</th>
+                <th class="text-right">Spend</th>
+                <th class="text-center">Purchases</th>
+                <th class="text-right">CPA</th>
+                <th class="text-center">ROAS</th>
+                <th class="text-center">Thumbstop %</th>
+                <th class="text-center">Hook Score</th>
+                <th class="text-center">Watch Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td class="highlight">Video 1 HeyGen (27.01.26)</td><td class="text-right">$74.94</td><td class="text-center">2</td><td class="text-right orange">$37.47</td><td class="text-center">0.72x</td><td class="text-center green">23.1%</td><td class="text-center">-</td><td class="text-center">-</td></tr>
+            <tr><td class="highlight">Video 2 HeyGen (27.01.26)</td><td class="text-right">$565.44</td><td class="text-center">8</td><td class="text-right red">$70.68</td><td class="text-center red">0.38x</td><td class="text-center">20.0%</td><td class="text-center">60</td><td class="text-center">60</td></tr>
+            <tr><td class="highlight">Video 6W Challenge (Original)</td><td class="text-right">$242.98</td><td class="text-center">3</td><td class="text-right red">$81.00</td><td class="text-center red">0.27x</td><td class="text-center">21.1%</td><td class="text-center">60</td><td class="text-center">53</td></tr>
+        </tbody>
+    </table>
+
+    <div class="insight-box">
+        <h4>Creative Insights</h4>
+        <p>The "Flash Sale Fitness Coaches" static at $13.86 CPA with a perfect Convert Score of 100 is the standout creative. Direct coach callouts in copy outperform generic messaging by a wide margin. Static creative is outperforming video on CPA efficiency . Video 2 HeyGen absorbed $565 at $70.68 CPA (0.38x ROAS), making it the largest single source of wasted spend. The $7 refresh statics are showing early promise but need more data. Key pattern: bright, clean layouts with professional coach callouts consistently win.</p>
+    </div>
+
+    <div class="slide-footer">
+        <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media">
+        <span></span>
+        <span>07 / 14</span>
+    </div>
+</section>
+
+<!-- SLIDE 8: Copy & Landing Page Analysis -->
+<section class="slide">
+    <span class="slide-number">08 / 14</span>
+    <div class="slide-tag">Copy & Landing Page Analysis</div>
+    <h2>Ad Copy Performance & Landing Page Conversion</h2>
+
+    <h3>Top Converting Ad Copy | Motion Analytics</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Copy Angle</th>
+                <th class="text-right">Spend</th>
+                <th class="text-center">Purch.</th>
+                <th class="text-right">CPA</th>
+                <th class="text-center">ROAS</th>
+                <th class="text-center">CTR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td class="highlight">"$197 value yours for $12" (Price Anchoring)</td><td class="text-right">$14.39</td><td class="text-center green">2</td><td class="text-right green">$7.20</td><td class="text-center green">3.75x</td><td class="text-center">0.60%</td></tr>
+            <tr><td class="highlight">"Flash Sale $12" (Urgency + Value)</td><td class="text-right">$43.00</td><td class="text-center">3</td><td class="text-right green">$14.33</td><td class="text-center">0.84x</td><td class="text-center">0.92%</td></tr>
+            <tr><td class="highlight">"Tired of spending WEEKS" (Pain/Solution 6WK)</td><td class="text-right">$97.94</td><td class="text-center green">6</td><td class="text-right green">$16.32</td><td class="text-center green">1.50x</td><td class="text-center">1.16%</td></tr>
+            <tr><td class="highlight">"500+ coaches already use" (Social Proof SD)</td><td class="text-right">$41.66</td><td class="text-center">2</td><td class="text-right orange">$20.83</td><td class="text-center">0.58x</td><td class="text-center green">1.64%</td></tr>
+            <tr><td class="highlight">"Coaches spend hours" ($7 copy)</td><td class="text-right">$84.50</td><td class="text-center">3</td><td class="text-right orange">$28.17</td><td class="text-center">0.60x</td><td class="text-center">0.76%</td></tr>
+            <tr><td class="highlight">"Hey fitness pro raise your hand" (Problem SD)</td><td class="text-right">$106.39</td><td class="text-center">3</td><td class="text-right orange">$35.46</td><td class="text-center">0.34x</td><td class="text-center">1.05%</td></tr>
+            <tr><td class="highlight">"Hey health coach tired of hours" (Hero SD)</td><td class="text-right">$192.22</td><td class="text-center">4</td><td class="text-right red">$48.06</td><td class="text-center red">0.33x</td><td class="text-center">1.23%</td></tr>
+        </tbody>
+    </table>
+
+    <div class="two-col" style="margin-top: 24px;">
+        <div>
+            <h3>Landing Page Performance</h3>
+            <table class="data-table">
+                <thead><tr><th>Landing Page</th><th class="text-center">Clicks</th><th class="text-center">Purch.</th><th class="text-center">Conv %</th><th class="text-right">CPA</th></tr></thead>
+                <tbody>
+                    <tr><td class="highlight">coach.fitproessentials.com/6wk</td><td class="text-center">411</td><td class="text-center">27</td><td class="text-center">6.6%</td><td class="text-right red">$57.35</td></tr>
+                    <tr><td class="highlight">coach.fitproessentials.com/sugar-detox</td><td class="text-center">248</td><td class="text-center">26</td><td class="text-center green">10.5%</td><td class="text-right orange">$29.12</td></tr>
+                </tbody>
+            </table>
+            <div class="insight-box" style="margin-top: 16px;">
+                <h4>Sugar Detox LP Converting 1.6x Better</h4>
+                <p>At 10.5% click-to-purchase vs 6.6% for 6WK, the Sugar Detox landing page improvements (mockup redesign, clearer layout, price reduction) are showing tangible impact. The 6WK landing page may benefit from similar optimization passes.</p>
+            </div>
+        </div>
+        <div>
+            <h3>Copy Pattern Winners</h3>
+            <div class="card green-border" style="margin-bottom: 16px;">
+                <h4 style="color: var(--accent-green);">What Converts</h4>
+                <ul class="check-list" style="font-size: 13px;">
+                    <li>Direct price anchoring: "$197 value for $12"</li>
+                    <li>Pain/solution framing: "Tired of spending WEEKS"</li>
+                    <li>Professional callouts: "Hey fitness pro!"</li>
+                    <li>Social proof with specifics: "500+ coaches"</li>
+                    <li>Time-saving hook: "Launch in under 2 hours"</li>
+                </ul>
+            </div>
+            <div class="card red-border">
+                <h4 style="color: var(--accent-red);">What Doesn't Convert</h4>
+                <ul class="check-list" style="font-size: 13px;">
+                    <li class="red">Flash sale without coach callout: $0 CPA, 0 sales</li>
+                    <li class="red">Generic urgency: "What if done for you" = 0 sales</li>
+                    <li class="red">Dated references: "New Year" in Feb = irrelevant</li>
+                    <li class="red">Long-form without hook: $0 conversions</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media">
+        <span></span>
+        <span>08 / 14</span>
+    </div>
+</section>
+
+<!-- SLIDE 9: Attribution Resolution -->
+<section class="slide">
+    <span class="slide-number">09 / 14</span>
+    <div class="slide-tag">Attribution Analysis</div>
+    <h2>Attribution Gap: Resolved</h2>
+
+    <div class="two-col">
+        <div>
+            <h3>Pre-Takeover Attribution Gap</h3>
+            <div class="reporting-gap">
+                <div class="gap-indicator">
+                    <div class="gap-label">Confirmed</div>
+                    <div class="gap-bar"><div class="gap-fill" style="width: 100%; background: var(--accent-green);"></div></div>
+                    <div class="gap-value" style="color: var(--accent-green);">90 sales</div>
+                </div>
+                <div class="gap-indicator">
+                    <div class="gap-label">Meta</div>
+                    <div class="gap-bar"><div class="gap-fill" style="width: 34%; background: var(--accent-purple);"></div></div>
+                    <div class="gap-value" style="color: var(--accent-purple);">31 sales</div>
+                </div>
+                <div class="tracked-more">66% of sales not attributed . Meta was under-reporting by 2.9x</div>
+            </div>
+        </div>
+        <div>
+            <h3>Current Period Attribution</h3>
+            <div class="reporting-gap">
+                <div class="gap-indicator">
+                    <div class="gap-label">Confirmed</div>
+                    <div class="gap-bar"><div class="gap-fill" style="width: 100%; background: var(--accent-green);"></div></div>
+                    <div class="gap-value" style="color: var(--accent-green);">88 sales</div>
+                </div>
+                <div class="gap-indicator">
+                    <div class="gap-label">Meta</div>
+                    <div class="gap-bar"><div class="gap-fill" style="width: 95%; background: var(--accent-purple);"></div></div>
+                    <div class="gap-value" style="color: var(--accent-purple);">84 sales</div>
+                </div>
+                <div class="tracked-more">Only 5% gap . Attribution accuracy now solid</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="insight-box" style="margin-top: 24px;">
+        <h4>What Changed</h4>
+        <p>The SamCart to GoHighLevel checkout migration resolved the main tracking issue. Sugar Detox runs entirely through GHL with accurate pixel firing. The 6WK campaign still shows a slight gap (56 Meta vs 54 confirmed), with Meta slightly over-reporting likely due to view-through attribution counting some warm audience exposures. What this means: the pre-takeover period's 8.29x ROAS was partially inflated by unattributed sales that may not all have been directly caused by ads. However, even adjusting for this, the pre-takeover numbers were still much stronger than what we are seeing now.</p>
+    </div>
+
+    <div class="insight-box purple">
+        <h4>Strategic Implication</h4>
+        <p>With attribution now reliable, we can trust Meta's optimization signals going forward. This means the algorithm can properly learn from actual conversions rather than partially blind data. Cleaner data means better optimization over time. Now that tracking is sorted, the focus shifts entirely to getting CPA down through better creative and smarter campaign structure.</p>
+    </div>
+
+    <div class="slide-footer">
+        <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media">
+        <span></span>
+        <span>09 / 14</span>
+    </div>
+</section>
+
+<!-- SLIDE 10: Audit Strategy Targets vs Actuals -->
+<section class="slide">
+    <span class="slide-number">10 / 14</span>
+    <div class="slide-tag">Strategy Review</div>
+    <h2>Pre-Takeover Audit Targets vs Actual Results</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Audit Target (Month One)</th>
+                <th class="text-center">Target</th>
+                <th class="text-center">Actual (30 Days)</th>
+                <th class="text-center">% of Target</th>
+                <th class="text-center">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td class="highlight">Monthly Budget</td><td class="text-center">$7,200</td><td class="text-center">$3,901</td><td class="text-center">54%</td><td class="text-center"><span class="tag orange">Under</span></td></tr>
+            <tr><td class="highlight">Target CPA</td><td class="text-center">Under $15</td><td class="text-center">$44.33</td><td class="text-center red">295% over</td><td class="text-center"><span class="tag red">Missed</span></td></tr>
+            <tr><td class="highlight">Target Sales</td><td class="text-center">200-250</td><td class="text-center">88</td><td class="text-center red">35-44%</td><td class="text-center"><span class="tag red">Missed</span></td></tr>
+            <tr><td class="highlight">New Creative Assets</td><td class="text-center">10+</td><td class="text-center">20+</td><td class="text-center green">200%</td><td class="text-center"><span class="tag green">Exceeded</span></td></tr>
+            <tr><td class="highlight">Sugar Detox Launch</td><td class="text-center">Week 3-4</td><td class="text-center">Jan 26 (Week 2)</td><td class="text-center green">Ahead</td><td class="text-center"><span class="tag green">Hit</span></td></tr>
+            <tr><td class="highlight">Add Canada Targeting</td><td class="text-center">Week 1</td><td class="text-center">Completed</td><td class="text-center green">Done</td><td class="text-center"><span class="tag green">Hit</span></td></tr>
+            <tr><td class="highlight">Purchaser Exclusions</td><td class="text-center">Week 1</td><td class="text-center">Completed</td><td class="text-center green">Done</td><td class="text-center"><span class="tag green">Hit</span></td></tr>
+            <tr><td class="highlight">Conversions API Audit</td><td class="text-center">Week 1-2</td><td class="text-center">Pending</td><td class="text-center red">Not Done</td><td class="text-center"><span class="tag red">Missed</span></td></tr>
+            <tr><td class="highlight">Coach Engine Redesign</td><td class="text-center">Week 3-4</td><td class="text-center">Not Started</td><td class="text-center red">Deferred</td><td class="text-center"><span class="tag orange">Deferred</span></td></tr>
+        </tbody>
+    </table>
+
+    <div class="two-col" style="margin-top: 24px;">
+        <div class="insight-box red">
+            <h4>Q1 Revenue Projection at Current Pace</h4>
+            <p>The audit projected $47,000+ Q1 revenue on $26,700 spend. At the current 30-day run rate of $3,192 revenue on $3,901 spend, the 90-day projection would be approximately $9,576 revenue on $11,703 spend , a net loss of $2,127. This is 80% below the audit's revenue target. We need to change course now.</p>
+        </div>
+        <div class="insight-box">
+            <h4>What Was Executed Well</h4>
+            <p>Creative production exceeded targets with 20+ new assets (vs 10+ target). Sugar Detox launched ahead of schedule with validated funnel metrics. New customer acquisition rate improved (27.8% to 64.8%). Funnel conversion rates (OB and upsell) improved across all metrics. Client communication maintained daily throughout despite operational challenges. Attribution tracking is now fixed after the SamCart to GHL migration.</p>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media">
+        <span></span>
+        <span>10 / 14</span>
+    </div>
+</section>
+
+<!-- SLIDE 11: What's Working & What's Not -->
+<section class="slide">
+    <span class="slide-number">11 / 14</span>
+    <div class="slide-tag">Strategic Assessment</div>
+    <h2>Honest Assessment: Winners, Losers, and Learnings</h2>
+
+    <div class="three-col">
+        <div class="card green-border">
+            <h3 style="color: var(--accent-green);">Working</h3>
+            <ul class="check-list" style="font-size: 13px;">
+                <li>Sugar Detox product-market fit validated (34 sales in 16 days)</li>
+                <li>Sugar Detox OB at 47.1% . Best converting bump in account</li>
+                <li>6WK funnel economics: $50.50 AOV on $27 FEO</li>
+                <li>New customer rate 64.8% . Cold traffic acquiring new buyers</li>
+                <li>"Flash Sale Fitness Coaches" static: $13.86 CPA, Convert Score 100</li>
+                <li>Direct coach callouts in copy working across both products</li>
+                <li>Attribution gap resolved: 5% vs 66% previously</li>
+                <li>Client collaboration and communication cadence strong</li>
+            </ul>
+        </div>
+        <div class="card red-border">
+            <h3 style="color: var(--accent-red);">Not Working</h3>
+            <ul class="check-list" style="font-size: 13px;">
+                <li class="red">6WK CPA at $55.32 (target was $15) : 3.7x over</li>
+                <li class="red">Video 2 HeyGen: $565 spend at $70.68 CPA (0.38x ROAS)</li>                <li class="red">Warm audience saturation: 7.52 frequency on SD warm</li>
+                <li class="red">5-day dead zone (Jan 22-26) : zero sales, continued spend</li>
+                <li class="red">Multiple simultaneous changes disrupting learning phase</li>
+                <li class="red">Sugar Detox cold CPA at $51.08 : not yet viable</li>
+                <li class="red">Overall account at -$708.61 net loss</li>
+                <li class="red">Conversions API audit not yet completed</li>
+            </ul>
+        </div>
+        <div class="card orange-border">
+            <h3 style="color: var(--accent-orange);">Key Learnings</h3>
+            <ul class="check-list" style="font-size: 13px;">
+                <li class="orange">Static creative outperforms video on CPA by 3-5x</li>
+                <li class="orange">Coach-specific callouts perform much better</li>
+                <li class="orange">Price anchoring copy ($197 for $12) = lowest CPA at $7.20</li>
+                <li class="orange">Isolate one variable per test . Stacking changes = blind optimization</li>
+                <li class="orange">Warm audiences saturate fast . Plan refresh cycles in advance</li>
+                <li class="orange">Lower price entry ($7-12) converts at 1.6x higher rate on LP</li>
+                <li class="orange">Attribution fix means Meta signals are now trustworthy</li>
+                <li class="orange">Facebook account access = critical infrastructure, needs backup plan</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media">
+        <span></span>
+        <span>11 / 14</span>
+    </div>
+</section>
+
+<!-- SLIDE 12: Turnaround Phase 1 -->
+<section class="slide">
+    <span class="slide-number">12 / 14</span>
+    <div class="slide-tag">Turnaround Plan - Phase 1</div>
+    <h2>This Week: Stop the Bleeding (Feb 12-18)</h2>
+
+    <div class="two-col">
+        <div>
+            <h3>Kill the Waste</h3>
+            <div class="card red-border" style="margin-bottom: 16px;">
+                <h4 style="color: var(--accent-red);">Pause Today</h4>
+                <table class="data-table" style="font-size: 12px;">
+                    <thead><tr><th>Ad</th><th class="text-right">Spent</th><th class="text-right">CPA</th><th class="text-right">Why</th></tr></thead>
+                    <tbody>
+                        <tr><td>Video 2 HeyGen</td><td class="text-right">$565</td><td class="text-right red">$70.68</td><td class="text-right">0.38x ROAS, largest waste</td></tr>
+                        <tr><td>Video 6W Original</td><td class="text-right">$243</td><td class="text-right red">$81.00</td><td class="text-right">0.27x ROAS</td></tr>
+                        <tr><td>SD Warm Ad Set</td><td class="text-right">$607</td><td class="text-right orange">$27.60</td><td class="text-right">Freq 7.52, tapped out</td></tr>
+                    </tbody>
+                </table>
+                <p style="font-size: 12px; margin-top: 12px;">New rule going forward: any ad that hits $20 spend with zero conversions gets paused same day. No exceptions. This prevents another Video 2 situation where $565 drains out at $70 CPA before anyone catches it.</p>
+            </div>
+            <div class="card green-border">
+                <h4 style="color: var(--accent-green);">Redirect Budget to These Winners</h4>
+                <table class="data-table" style="font-size: 12px;">
+                    <thead><tr><th>Ad</th><th class="text-right">CPA</th><th class="text-right">ROAS</th><th>Action</th></tr></thead>
+                    <tbody>
+                        <tr><td>STATIC 5 Flash Sale</td><td class="text-right green">$13.86</td><td class="text-right green">0.87x</td><td>Increase budget 30%</td></tr>
+                        <tr><td>STATIC 2 "$12"</td><td class="text-right green">$11.77</td><td class="text-right green">2.29x</td><td>Increase budget 30%</td></tr>
+                        <tr><td>"Tired of WEEKS" copy</td><td class="text-right green">$16.32</td><td class="text-right green">1.50x</td><td>Pair with new statics</td></tr>
+                        <tr><td>"$197 for $12" copy</td><td class="text-right green">$7.20</td><td class="text-right green">3.75x</td><td>Run across all statics</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            <h3>Fix the Campaign Setup</h3>
+            <div class="card purple-border" style="margin-bottom: 16px;">
+                <h4 style="color: var(--accent-purple);">6WK Challenge</h4>
+                <ul class="check-list" style="font-size: 13px;">
+                    <li>Drop daily budget from $60 to $40 on the cold ad set. We burned $2,664 at $53 CPA. Less spend per day = less waste while we fix creative.</li>
+                    <li>One cold ad set only. No warm for now (saturated, freq hit 4.59). Reactivate warm later with fresh creative once cold CPA is under $25.</li>
+                    <li>Strip the ad set down to the 4 proven performers above, plus 2-3 new statics built from winning templates. Cut everything else.</li>
+                    <li>Get CAPI audit done with Avashesh by Friday Feb 14. Tracking is mostly fixed but we need to confirm deduplication is working correctly.</li>
+                </ul>
+            </div>
+            <div class="card orange-border">
+                <h4 style="color: var(--accent-orange);">Sugar Detox</h4>
+                <ul class="check-list" style="font-size: 13px;">
+                    <li class="orange">Kill the warm ad set (7.52 freq, done). Move to cold only at $40/day.</li>
+                    <li class="orange">Test $7 flat price vs $12. The $7 entry pulled a 47.1% OB take rate on warm. Need to see if cold responds the same.</li>
+                    <li class="orange">3 new statics: same bright/clean look that works for 6WK. Blonde woman, "fitness pro" or "health coach" callout in the copy.</li>
+                    <li class="orange">Add a CE trial offer on the Sugar Detox thank you page. Currently zero CE trials from SD buyers. Free money being left behind.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="insight-box" style="margin-top: 24px;">
+        <h4>Expected Impact</h4>
+        <p>Moving the $808/month we were wasting on dead video creative into statics running at $12-14 CPA should add 55-65 extra sales per month at current conversion rates. Cutting SD warm ($607 saved) and reducing 6WK to $40/day brings total daily spend from about $130 down to $80, concentrating budget on what actually converts. Target: 6WK CPA under $25 and SD CPA under $15 within 14 days.</p>
+    </div>
+
+    <div class="slide-footer">
+        <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media">
+        <span></span>
+        <span>12 / 14</span>
+    </div>
+</section>
+
+<!-- SLIDE 13: Turnaround Phase 2 and 3 -->
+<section class="slide">
+    <span class="slide-number">13 / 14</span>
+    <div class="slide-tag">Turnaround Plan - Phase 2 and 3</div>
+    <h2>Weeks 2-4: Rebuild, Test, and Scale</h2>
+
+    <div class="two-col">
+        <div>
+            <div class="card purple-border" style="margin-bottom: 20px;">
+                <h4 style="color: var(--accent-purple);">Week 2: Test and Learn (Feb 19-25)</h4>
+                <ul class="check-list" style="font-size: 13px;">
+                    <li>Review CPA trend from Week 1 changes. If under $25, hold. If still above $30, cut budget further to $30/day and evaluate creative.</li>
+                    <li>A/B test Sugar Detox $7 vs $12 price point. Run each for 5 days minimum before making a call.</li>
+                    <li>Launch 3 new price-anchoring copy variants. The "$197 value for $12" angle at $7.20 CPA is our best copy. Build variations around different value stacks ("$500 worth of content for $7", etc).</li>
+                    <li>Start 6WK landing page test. SD page converts at 10.5% vs 6WK at 6.6%. Apply the same layout principles: cleaner design, shorter page, stronger mockup above fold. Even a 2% lift = 8+ more sales per month at current traffic.</li>
+                    <li>Brief new Coach Engine creative. Brighter backgrounds, personal photos of Alicia, stronger coach-specific callout. Ready for warm launch in Week 3.</li>
+                </ul>
+            </div>
+            <div class="card green-border">
+                <h4 style="color: var(--accent-green);">Week 3: Scale What Works (Feb 26 - Mar 4)</h4>
+                <ul class="check-list" style="font-size: 13px;">
+                    <li>If 6WK CPA is under $20: increase daily budget by 20% ($40 to $48). If under $15: go to $60.</li>
+                    <li>Launch Coach Engine to warm audience with new creative. Budget: $30/day. CE only goes to warm until cold CPA is stable on the FEO products.</li>
+                    <li>Look at the Sugar Detox to CE trial pipeline. If SD buyers are not converting to CE trials, the thank you page offer needs reworking (pricing, copy, or format).</li>
+                    <li>New HeyGen video brief: shorter format (under 30 seconds), lead with the hook from top-performing copy, close-up shot first. The old videos had decent thumbstop (20-23%) but terrible CPA. The scripts need to sell harder.</li>
+                    <li>Pull a new customer list from SD and 6WK buyers and build a fresh LLA for testing in Week 4.</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="card orange-border" style="margin-bottom: 20px;">
+                <h4 style="color: var(--accent-orange);">Week 4: Evaluate and Set Month 3 Plan (Mar 5-11)</h4>
+                <ul class="check-list" style="font-size: 13px;">
+                    <li class="orange">Full Month 2 performance review vs Month 1 and pre-takeover benchmarks. Same format as this deck.</li>
+                    <li class="orange">If CPA under $20 and ROAS above 1.5x: push daily budget to $80-100 across campaigns.</li>
+                    <li class="orange">If CPA still above $25: we have a creative problem, not a budget problem. Shift focus to testing 5+ completely new angles and possibly a new FEO product.</li>
+                    <li class="orange">Decide on Content Club retest. If SD and 6WK funnels are healthy, allocate $30/day to a Content Club cold test with new creative direction.</li>
+                    <li class="orange">Set Q2 targets based on real data. No more projecting from the pre-takeover period. Use the 60 days of data we will have by then.</li>
+                    <li class="orange">Start planning June challenge rotation. Alicia mentioned a new challenge launch. Get the landing page and funnel structure locked in early so creative can be ready well in advance.</li>
+                </ul>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--accent-green);">
+                <h4 style="color: var(--accent-green);">Month 2 Targets (Realistic, Not Aspirational)</h4>
+                <table class="data-table" style="font-size: 13px;">
+                    <thead><tr><th>Metric</th><th class="text-center">Month 1 Actual</th><th class="text-center">Month 2 Target</th><th class="text-center">How</th></tr></thead>
+                    <tbody>
+                        <tr><td class="highlight">CPA</td><td class="text-center red">$44.33</td><td class="text-center green">Under $20</td><td class="text-center">Cut waste, scale winners</td></tr>
+                        <tr><td class="highlight">ROAS</td><td class="text-center red">0.82x</td><td class="text-center green">1.5x+</td><td class="text-center">Better creative mix</td></tr>
+                        <tr><td class="highlight">Sales</td><td class="text-center orange">88</td><td class="text-center green">120+</td><td class="text-center">Budget on proven ads</td></tr>
+                        <tr><td class="highlight">Daily Sales</td><td class="text-center orange">2.9/day</td><td class="text-center green">4.0/day</td><td class="text-center">LP optimization lift</td></tr>
+                        <tr><td class="highlight">Net P&L</td><td class="text-center red">-$708</td><td class="text-center green">Breakeven+</td><td class="text-center">CPA + funnel fixes</td></tr>
+                        <tr><td class="highlight">CE Trials from SD</td><td class="text-center red">0</td><td class="text-center green">5-10</td><td class="text-center">TY page CE offer</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media">
+        <span></span>
+        <span>13 / 14</span>
+    </div>
+</section>
+
+<!-- SLIDE 14: Close -->
+<section class="slide cover" style="text-align: center;">
+    <span class="slide-number">14 / 14</span>
+    <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Heath Media" style="width: 160px; margin-bottom: 32px; opacity: 0.9;">
+    <div class="slide-tag">Bottom Line</div>
+    <h2 style="max-width: 700px;">Month 1 was a rough start.<br>Here is exactly how we fix it.</h2>
+    
+    <div style="max-width: 640px; margin: 32px auto;">
+        <p style="text-align: center; font-size: 16px; line-height: 1.8;">The numbers do not lie. We are spending more and getting less than the pre-takeover period. CPA went from $6.32 to $44.33, and the account is running at a loss. That has to change fast. But the data also shows us exactly where the money should be going: static creative with coach-specific callouts, price anchoring copy, and a lower-friction entry point through Sugar Detox. The funnel backend is actually stronger (OB +44%, upsells +21%, new customers +133%), and attribution is now accurate. The problem is top-of-funnel efficiency, and the fix is straightforward: stop wasting budget on video creative that does not convert, double down on the statics and copy angles that do, and test one thing at a time instead of changing everything at once.</p>
+    </div>
+
+    <div style="display: flex; gap: 24px; justify-content: center; margin-top: 32px; flex-wrap: wrap;">
+        <div class="card red-border" style="text-align: center; min-width: 180px;">
+            <div class="metric-label">This Week</div>
+            <p style="font-size: 14px; font-weight: 600; color: var(--accent-red);">Cut waste, get CPA to $25</p>
+        </div>
+        <div class="card purple-border" style="text-align: center; min-width: 180px;">
+            <div class="metric-label">Week 2-3</div>
+            <p style="font-size: 14px; font-weight: 600; color: var(--accent-purple);">Test LP, price, new statics</p>
+        </div>
+        <div class="card green-border" style="text-align: center; min-width: 180px;">
+            <div class="metric-label">Week 4</div>
+            <p style="font-size: 14px; font-weight: 600; color: var(--accent-green);">Scale winners, launch CE</p>
+        </div>
+        <div class="card orange-border" style="text-align: center; min-width: 180px;">
+            <div class="metric-label">Month 2 Goal</div>
+            <p style="font-size: 14px; font-weight: 600; color: var(--accent-orange);">CPA under $20, breakeven+</p>
+        </div>
+    </div>
+
+    <div style="margin-top: 48px; font-size: 13px; color: var(--text-muted);">
+        <p style="text-align: center;">Prepared by Charles Piper | Heath Media | February 11, 2026</p>
+        <p style="text-align: center; margin-top: 8px;">Data: Meta Ads Manager, Motion Analytics, Confirmed Sales Tracker, Pre-Takeover Audit Deck</p>
+    </div>
+</section>
+
+</body>
+</html>
