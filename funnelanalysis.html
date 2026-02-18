@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fit Pro Essentials – Account Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1628;
+    --blue: #1A4FBF;
+    --electric: #2B7FFF;
+    --cyan: #00D4FF;
+    --red: #FF3B3B;
+    --green: #00C47A;
+    --amber: #FFB020;
+    --white: #F5F7FA;
+    --grey: #8A9BB5;
+    --card: #111E35;
+    --border: rgba(43,127,255,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* SLIDE ENGINE */
+  .deck { width: 100%; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    display: none; flex-direction: column;
+    padding: 52px 64px 40px;
+    opacity: 0; transition: opacity 0.35s ease;
+  }
+  .slide.active { display: flex; opacity: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 24px;
+    background: rgba(17,30,53,0.95); border: 1px solid var(--border);
+    border-radius: 100px; padding: 10px 28px;
+    backdrop-filter: blur(12px); z-index: 100;
+  }
+  nav button {
+    background: none; border: none; color: var(--grey); cursor: pointer;
+    font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.05em;
+    padding: 4px 12px; border-radius: 20px; transition: all 0.2s;
+  }
+  nav button:hover, nav button.active { color: var(--white); background: var(--blue); }
+  #counter { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--grey); min-width: 44px; text-align: center; }
+  .nav-arrow { font-size: 18px !important; padding: 4px 8px !important; }
+
+  /* KEYBOARD HINT */
+  .hint {
+    position: fixed; bottom: 96px; left: 50%; transform: translateX(-50%);
+    font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(138,155,181,0.5);
+    letter-spacing: 0.1em;
+  }
+
+  /* COMMON ELEMENTS */
+  .slide-label {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em;
+    color: var(--electric); text-transform: uppercase; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .slide-label::before { content: ''; width: 24px; height: 1px; background: var(--electric); }
+
+  h1 { font-family: 'Syne', sans-serif; font-weight: 800; line-height: 1.05; }
+  h2 { font-family: 'Syne', sans-serif; font-weight: 700; line-height: 1.1; }
+
+  .tag {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; padding: 3px 10px; border-radius: 4px; text-transform: uppercase;
+  }
+  .tag-red { background: rgba(255,59,59,0.15); color: var(--red); border: 1px solid rgba(255,59,59,0.3); }
+  .tag-green { background: rgba(0,196,122,0.15); color: var(--green); border: 1px solid rgba(0,196,122,0.3); }
+  .tag-amber { background: rgba(255,176,32,0.15); color: var(--amber); border: 1px solid rgba(255,176,32,0.3); }
+  .tag-blue { background: rgba(43,127,255,0.15); color: var(--electric); border: 1px solid rgba(43,127,255,0.3); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 24px;
+  }
+  .card-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--grey); text-transform: uppercase; margin-bottom: 6px; }
+  .card-value { font-family: 'Syne', sans-serif; font-weight: 700; }
+  .card-sub { font-size: 12px; color: var(--grey); margin-top: 4px; }
+
+  .divider { width: 100%; height: 1px; background: var(--border); margin: 4px 0; }
+
+  /* GRID HELPERS */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+
+  /* ALERT */
+  .alert {
+    border-radius: 8px; padding: 14px 20px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .alert-red { background: rgba(255,59,59,0.08); border: 1px solid rgba(255,59,59,0.25); }
+  .alert-green { background: rgba(0,196,122,0.08); border: 1px solid rgba(0,196,122,0.25); }
+  .alert-amber { background: rgba(255,176,32,0.08); border: 1px solid rgba(255,176,32,0.25); }
+  .alert-blue { background: rgba(43,127,255,0.08); border: 1px solid rgba(43,127,255,0.25); }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-text { font-size: 13.5px; line-height: 1.5; }
+  .alert-text strong { display: block; margin-bottom: 2px; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--grey); padding: 8px 12px;
+    border-bottom: 1px solid var(--border); text-align: left;
+  }
+  td { padding: 10px 12px; border-bottom: 1px solid rgba(43,127,255,0.06); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(43,127,255,0.04); }
+
+  /* PROGRESS BAR */
+  .progress-wrap { background: rgba(255,255,255,0.06); border-radius: 100px; height: 6px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 100px; transition: width 0.8s ease; }
+
+  /* STAT HIGHLIGHT */
+  .stat-big { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 36px; line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--grey); margin-top: 4px; }
+
+  /* LIST */
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .check-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; line-height: 1.4; }
+  .check-list li::before { content: '→'; color: var(--electric); font-family: 'DM Mono', monospace; flex-shrink: 0; }
+
+  /* SCROLLABLE CONTENT AREA */
+  .scroll-area { flex: 1; overflow-y: auto; padding-right: 4px; }
+  .scroll-area::-webkit-scrollbar { width: 4px; }
+  .scroll-area::-webkit-scrollbar-track { background: transparent; }
+  .scroll-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* ─── SLIDE 1: TITLE ─── */
+  #s1 {
+    background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(27,79,191,0.25) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(0,212,255,0.08) 0%, transparent 60%),
+                var(--navy);
+    justify-content: center;
+  }
+  #s1 .eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--cyan); text-transform: uppercase; margin-bottom: 20px; }
+  #s1 h1 { font-size: clamp(48px, 6vw, 80px); color: var(--white); margin-bottom: 8px; }
+  #s1 h1 span { color: var(--electric); }
+  #s1 .sub { font-size: 18px; color: var(--grey); font-weight: 300; margin-bottom: 40px; max-width: 480px; }
+  #s1 .meta-row { display: flex; gap: 32px; }
+  #s1 .meta-item { }
+  #s1 .meta-item .label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--grey); letter-spacing: 0.1em; text-transform: uppercase; }
+  #s1 .meta-item .val { font-size: 14px; font-weight: 500; margin-top: 2px; }
+  .accent-line { width: 60px; height: 3px; background: linear-gradient(90deg, var(--electric), var(--cyan)); border-radius: 2px; margin-bottom: 24px; }
+
+  /* ─── SLIDE 2: DIAGNOSIS ─── */
+  #s2 .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+
+  /* ─── SLIDE 3: ATTRIBUTION ─── */
+  #s3 .compare-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: start; }
+  #s3 .vs-divider { display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 24px; color: var(--grey); }
+
+  /* ─── SLIDE 4: AD PERFORMANCE ─── */
+
+  /* ─── SLIDE 5: CREATIVE ─── */
+
+  /* ─── SLIDE 6: FUNNEL ─── */
+  #s6 .funnel-steps { display: flex; align-items: stretch; gap: 0; }
+  #s6 .funnel-step {
+    flex: 1; background: var(--card); border: 1px solid var(--border);
+    border-radius: 0; padding: 16px 14px; position: relative;
+  }
+  #s6 .funnel-step:first-child { border-radius: 10px 0 0 10px; }
+  #s6 .funnel-step:last-child { border-radius: 0 10px 10px 0; }
+  #s6 .funnel-arrow {
+    width: 0; height: 0;
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent;
+    border-left: 20px solid rgba(43,127,255,0.3);
+    flex-shrink: 0; align-self: center;
+    z-index: 2;
+  }
+  #s6 .step-product { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--grey); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  #s6 .step-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: var(--cyan); }
+  #s6 .step-cvr { font-size: 11px; color: var(--grey); margin-top: 4px; }
+  #s6 .step-cvr span { color: var(--white); font-weight: 500; }
+  #s6 .step-action { font-size: 11px; margin-top: 6px; }
+
+  /* ─── SLIDE 7: BUDGET ─── */
+
+  /* ─── SLIDE 8: ACTION PLAN ─── */
+  #s8 .week-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  #s8 .week-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  #s8 .week-num { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--grey); letter-spacing: 0.1em; margin-bottom: 6px; }
+  #s8 .week-theme { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 10px; }
+  #s8 .week-items { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  #s8 .week-items li { font-size: 12px; color: var(--grey); display: flex; gap: 8px; line-height: 1.35; }
+  #s8 .week-items li::before { content: '·'; color: var(--electric); flex-shrink: 0; }
+
+  /* ─── SLIDE 9: TARGETS ─── */
+
+  /* ─── SLIDE 10: 72HR CHECKLIST ─── */
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- ══════════ SLIDE 1: TITLE ══════════ -->
+  <div class="slide active" id="s1">
+    <div class="eyebrow">Heath Media · Account Analysis</div>
+    <div class="accent-line"></div>
+    <h1>Fit Pro<br><span>Essentials</span></h1>
+    <p class="sub">Meta Ads Turnaround Strategy<br>February 2026</p>
+    <div class="meta-row">
+      <div class="meta-item">
+        <div class="label">Account Manager</div>
+        <div class="val">Charles Piper</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Client</div>
+        <div class="val">Alicia Streger</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Ad Account</div>
+        <div class="val">267106681004043</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Status</div>
+        <div class="val" style="color:var(--amber)">⚡ Turnaround Active</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SLIDE 2: DIAGNOSIS ══════════ -->
+  <div class="slide" id="s2">
+    <div class="slide-label">Diagnosis</div>
+    <h2 style="font-size:32px; margin-bottom:20px;">Where The Account Stands</h2>
+
+    <div class="kpi-strip">
+      <div class="card">
+        <div class="card-label">6WK CPA (Real)</div>
+        <div class="card-value" style="font-size:28px; color:var(--red)">$55+</div>
+        <div class="card-sub">Target: &lt;$20</div>
+      </div>
+      <div class="card">
+        <div class="card-label">SD CPA (Real)</div>
+        <div class="card-value" style="font-size:28px; color:var(--amber)">$22.86</div>
+        <div class="card-sub">Better than Meta shows</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Link CTR</div>
+        <div class="card-value" style="font-size:28px; color:var(--amber)">~1%</div>
+        <div class="card-sub">Target: 2%+</div>
+      </div>
+      <div class="card">
+        <div class="card-label">CPM</div>
+        <div class="card-value" style="font-size:28px; color:var(--red)">$40</div>
+        <div class="card-sub">High — frequency driven</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Bounce Rate</div>
+        <div class="card-value" style="font-size:28px; color:var(--red)">75%</div>
+        <div class="card-sub">Page speed issue</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="gap:16px; flex:1;">
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <h2 style="font-size:15px; color:var(--grey); font-weight:500; margin-bottom:2px;">Root Causes</h2>
+        <div class="alert alert-red">
+          <span class="alert-icon">🔴</span>
+          <div class="alert-text"><strong>Audience Saturation</strong>6WK frequency 3.7x+ — warm audience burned. CPM rising as a direct result.</div>
+        </div>
+        <div class="alert alert-red">
+          <span class="alert-icon">🔴</span>
+          <div class="alert-text"><strong>Creative Fatigue</strong>CTR collapsed to ~1%. Same ads served on repeat. Content refresh urgently needed.</div>
+        </div>
+        <div class="alert alert-amber">
+          <span class="alert-icon">🟡</span>
+          <div class="alert-text"><strong>Video Delivery Failure</strong>New HeyGen videos competing with proven statics — starved of impressions.</div>
+        </div>
+        <div class="alert alert-amber">
+          <span class="alert-icon">🟡</span>
+          <div class="alert-text"><strong>Landing Page Speed</strong>75% bounce rate. Page speed optimisation needed alongside creative refresh.</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <h2 style="font-size:15px; color:var(--grey); font-weight:500; margin-bottom:2px;">What's Working</h2>
+        <div class="alert alert-green">
+          <span class="alert-icon">✅</span>
+          <div class="alert-text"><strong>Sugar Detox Funnel</strong>Real CPA $22.86 vs Meta's false $33.99. OB converting at 43.1% — exceptional.</div>
+        </div>
+        <div class="alert alert-green">
+          <span class="alert-icon">✅</span>
+          <div class="alert-text"><strong>Static Ad Formula</strong>Proven "Creative Mix" hit $11.75 CPA. Blonde female statics clearly outperform video.</div>
+        </div>
+        <div class="alert alert-green">
+          <span class="alert-icon">✅</span>
+          <div class="alert-text"><strong>Upsell Stack</strong>6WK AOV $154.60 with OB + upsells. Re-evaluating to $97/$37 OB options + annual plan on TY page.</div>
+        </div>
+        <div class="alert alert-blue">
+          <span class="alert-icon">ℹ️</span>
+          <div class="alert-text"><strong>NZ Expansion</strong>New market test active — early signals positive. Monitor CPA before scaling.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SLIDE 3: ATTRIBUTION ══════════ -->
+  <div class="slide" id="s3">
+    <div class="slide-label">Attribution Gap</div>
+    <h2 style="font-size:32px; margin-bottom:8px;">Meta Is Lying To You</h2>
+    <p style="color:var(--grey); font-size:14px; margin-bottom:20px;">iOS 14+ tracking limitations mean Meta significantly under-counts conversions. Always cross-reference with the sales tracker.</p>
+
+    <div class="alert alert-red" style="margin-bottom:20px;">
+      <span class="alert-icon">🚨</span>
+      <div class="alert-text" style="font-size:14px;"><strong>Sugar Detox: 33% of real sales are invisible to Meta</strong>Meta reported 39 purchases. Tracker confirmed 58. Real CPA $22.86 — not Meta's $33.99. Real ROAS ~1.95x — not Meta's 0.41x.</div>
+    </div>
+
+    <div class="compare-grid" style="margin-bottom:16px;">
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--grey); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:12px;">Meta Dashboard Shows</div>
+        <div class="card" style="border-color:rgba(255,59,59,0.3);">
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div><div class="card-label">Purchases</div><div class="stat-big" style="font-size:40px; color:var(--red)">39</div></div>
+            <div class="divider"></div>
+            <div><div class="card-label">CPA</div><div class="stat-big" style="font-size:32px; color:var(--red)">$33.99</div></div>
+            <div class="divider"></div>
+            <div><div class="card-label">ROAS</div><div class="stat-big" style="font-size:32px; color:var(--red)">0.41x</div></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;">
+        <div style="font-size:40px; color:var(--electric)">≠</div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--grey); text-align:center; letter-spacing:0.1em;">33% GAP</div>
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--grey); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:12px;">Tracker Confirms (Reality)</div>
+        <div class="card" style="border-color:rgba(0,196,122,0.3);">
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div><div class="card-label">Purchases</div><div class="stat-big" style="font-size:40px; color:var(--green)">58</div></div>
+            <div class="divider"></div>
+            <div><div class="card-label">CPA</div><div class="stat-big" style="font-size:32px; color:var(--green)">$22.86</div></div>
+            <div class="divider"></div>
+            <div><div class="card-label">ROAS</div><div class="stat-big" style="font-size:32px; color:var(--green)">~1.95x</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="gap:12px;">
+      <div class="alert alert-amber">
+        <span class="alert-icon">⚡</span>
+        <div class="alert-text"><strong>Fix: Conversions API (CAPI)</strong>Avashesh to implement CAPI with pixel deduplication by Thu Feb 20. Closes the gap to &lt;10%.</div>
+      </div>
+      <div class="alert alert-blue">
+        <span class="alert-icon">📊</span>
+        <div class="alert-text"><strong>Rule Going Forward</strong>Every Monday report: show Meta reported vs tracker confirmed side by side. Never judge on Meta numbers alone.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SLIDE 4: AD PERFORMANCE ══════════ -->
+  <div class="slide" id="s4">
+    <div class="slide-label">Ad Performance</div>
+    <h2 style="font-size:28px; margin-bottom:16px;">Winners vs Losers — 30 Day View</h2>
+
+    <div class="grid-2" style="gap:16px; flex:1;">
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--green); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px;">✓ Keep Running</div>
+        <table>
+          <thead>
+            <tr><th>Ad</th><th>Spend</th><th>Conv</th><th>CPA</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>6WK Video Creative Mix</strong></td>
+              <td>$293</td><td>25</td>
+              <td style="color:var(--green); font-weight:600;">$11.75</td>
+              <td><span class="tag tag-green">⭐ Star</span></td>
+            </tr>
+            <tr>
+              <td><strong>Static 2 — "Just $12"</strong></td>
+              <td>$1.05</td><td>2</td>
+              <td style="color:var(--green); font-weight:600;">$0.53</td>
+              <td><span class="tag tag-green">Scale Now</span></td>
+            </tr>
+            <tr>
+              <td><strong>Image Ad 1 (Creative Mix)</strong></td>
+              <td>$303</td><td>14</td>
+              <td style="color:var(--green); font-weight:600;">$21.66</td>
+              <td><span class="tag tag-green">Active</span></td>
+            </tr>
+            <tr>
+              <td><strong>6WK Video (Opened)</strong></td>
+              <td>$84</td><td>6</td>
+              <td style="color:var(--amber); font-weight:600;">$14.01</td>
+              <td><span class="tag tag-amber">Monitor</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--red); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px;">✗ Pause Immediately</div>
+        <table>
+          <thead>
+            <tr><th>Ad</th><th>Spend</th><th>Conv</th><th>CPA</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Image Ad 1 (New Cold Set)</strong></td>
+              <td>$737</td><td>13</td>
+              <td style="color:var(--red); font-weight:600;">$56.73</td>
+              <td><span class="tag tag-red">Pause</span></td>
+            </tr>
+            <tr>
+              <td><strong>Video 2 HeyGen (Prior)</strong></td>
+              <td>$551</td><td>10</td>
+              <td style="color:var(--red); font-weight:600;">$55.20</td>
+              <td><span class="tag tag-red">Pause</span></td>
+            </tr>
+            <tr>
+              <td><strong>AD 1 Hero (Sugar Detox)</strong></td>
+              <td>$86</td><td>0</td>
+              <td style="color:var(--red); font-weight:600;">—</td>
+              <td><span class="tag tag-red">Pause</span></td>
+            </tr>
+            <tr>
+              <td><strong>Weekend Trap HeyGen</strong></td>
+              <td>$69</td><td>0</td>
+              <td style="color:var(--red); font-weight:600;">—</td>
+              <td><span class="tag tag-amber">Isolate</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="divider" style="margin: 14px 0;"></div>
+
+    <div class="grid-3" style="gap:12px;">
+      <div class="alert alert-red">
+        <span class="alert-icon">📏</span>
+        <div class="alert-text"><strong>Pause Rule</strong>$20+ spend with 0 conversions = pause immediately. Notify Alicia same day.</div>
+      </div>
+      <div class="alert alert-amber">
+        <span class="alert-icon">🎥</span>
+        <div class="alert-text"><strong>Video Isolation Rule</strong>Every new video gets its OWN ad set ($30/day). Never compete with proven statics.</div>
+      </div>
+      <div class="alert alert-green">
+        <span class="alert-icon">📈</span>
+        <div class="alert-text"><strong>Scaling Signal</strong>Static 2 at $0.53 CPA must be duplicated to cold + warm ad sets this week.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SLIDE 5: CREATIVE STRATEGY ══════════ -->
+  <div class="slide" id="s5">
+    <div class="slide-label">Creative Strategy</div>
+    <h2 style="font-size:28px; margin-bottom:16px;">What Works — And What To Build Next</h2>
+
+    <div class="grid-2" style="gap:16px; margin-bottom:14px;">
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--grey); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px;">Proven Creative Principles</div>
+        <ul class="check-list">
+          <li>Blonde women in statics — Alicia confirmed + data validates</li>
+          <li>Clean, bright imagery — dark aesthetics consistently underperform</li>
+          <li>Extreme value framing: "$12 instead of $597"</li>
+          <li>Specific outcomes over vague promises ("100 new leads in 30 days")</li>
+          <li>Coach-specific pain points: client acquisition, time, income predictability</li>
+          <li>No "DFY" over-promises — Alicia flagged this multiple times</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--grey); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px;">Priority Briefs — This Week</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="card" style="padding:12px 16px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+              <span class="tag tag-red">Urgent</span>
+              <span style="font-size:13px; font-weight:500;">Social proof static</span>
+            </div>
+            <div style="font-size:12px; color:var(--grey);">"What 500 fit pros use to get 5 new clients/month"</div>
+          </div>
+          <div class="card" style="padding:12px 16px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+              <span class="tag tag-red">Urgent</span>
+              <span style="font-size:13px; font-weight:500;">6WK winner variation</span>
+            </div>
+            <div style="font-size:12px; color:var(--grey);">"Stop building from scratch. Steal this instead."</div>
+          </div>
+          <div class="card" style="padding:12px 16px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+              <span class="tag tag-amber">High</span>
+              <span style="font-size:13px; font-weight:500;">Sugar Detox for coaches</span>
+            </div>
+            <div style="font-size:12px; color:var(--grey);">"Your clients want meal plans. You don't have time. Here's the fix."</div>
+          </div>
+          <div class="card" style="padding:12px 16px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+              <span class="tag tag-amber">High</span>
+              <span style="font-size:13px; font-weight:500;">Blonde HeyGen (isolated)</span>
+            </div>
+            <div style="font-size:12px; color:var(--grey);">"Weekend is when coaches lose clients. Here's why." — own ad set only.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-blue">
+      <span class="alert-icon">⚠️</span>
+      <div class="alert-text"><strong>CPM at $40 + Frequency 5.15 = content refresh is the #1 lever right now.</strong> Without new creative, CPM will continue rising and performance will keep declining. This is the primary driver of cost recovery.</div>
+    </div>
+  </div>
+
+  <!-- ══════════ SLIDE 6: FUNNEL & AOV ══════════ -->
+  <div class="slide" id="s6">
+    <div class="slide-label">Funnel & AOV Optimisation</div>
+    <h2 style="font-size:28px; margin-bottom:16px;">Maximising Revenue Per Click</h2>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--grey); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px;">6-Week Challenge Funnel</div>
+      <div class="funnel-steps">
+        <div class="funnel-step">
+          <div class="step-product">Front End</div>
+          <div class="step-price">$27</div>
+          <div style="font-size:12px; font-weight:500; margin-top:2px;">6-Week Challenge</div>
+          <div class="step-cvr">CVR: <span>100%</span></div>
+        </div>
+        <div class="funnel-arrow"></div>
+        <div class="funnel-step" style="border-color:rgba(255,176,32,0.3);">
+          <div class="step-product">Order Bump — RE-EVALUATING</div>
+          <div class="step-price" style="color:var(--amber);">$97 / $37</div>
+          <div style="font-size:12px; font-weight:500; margin-top:2px;">Testing New OB Options</div>
+          <div class="step-cvr">Currently: <span>19.4%</span> (target 30%+)</div>
+          <div class="step-action"><span class="tag tag-amber">Optimise</span></div>
+        </div>
+        <div class="funnel-arrow"></div>
+        <div class="funnel-step">
+          <div class="step-product">Upsell</div>
+          <div class="step-price">$67</div>
+          <div style="font-size:12px; font-weight:500; margin-top:2px;">Marketing Bundle</div>
+          <div class="step-cvr">CVR: <span>22.2%</span></div>
+        </div>
+        <div class="funnel-arrow"></div>
+        <div class="funnel-step" style="border-color:rgba(0,212,255,0.3);">
+          <div class="step-product">Thank-You Page</div>
+          <div class="step-price" style="color:var(--cyan); font-size:16px;">Annual + Coaching Call</div>
+          <div style="font-size:12px; font-weight:500; margin-top:2px;">New AOV Upsells</div>
+          <div class="step-cvr">CE trial: <span>5.6%</span> → target 15%</div>
+          <div class="step-action"><span class="tag tag-blue">New</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="gap:14px;">
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--grey); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px;">Current AOV Breakdown (6WK)</div>
+        <div class="card">
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+              <span>Front-end ($27)</span><span style="color:var(--white); font-weight:600;">$27.00</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+              <span>Order Bump (19.4% take rate)</span><span style="color:var(--amber); font-weight:600;">+$3.30</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+              <span>Upsell (22.2% take rate)</span><span style="color:var(--green); font-weight:600;">+$14.86</span>
+            </div>
+            <div class="divider"></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:15px;">
+              <strong>Blended AOV</strong><span style="color:var(--cyan); font-weight:700; font-size:20px;">$154.60</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--grey); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px;">Sugar Detox Funnel</div>
+        <div class="card">
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+              <span>Front-end ($12)</span><span style="color:var(--white); font-weight:600;">$12.00</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+              <span>OB-Ads (43.1% take rate)</span><span style="color:var(--green); font-weight:600;">+$3.02</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--amber);">
+              <span>Mini Bundle OB test ($27)</span><span style="font-weight:600;">Testing</span>
+            </div>
+            <div class="divider"></div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong>Blended AOV</strong><span style="color:var(--cyan); font-weight:700; font-size:20px;">$44.47</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SLIDE 7: BUDGET ══════════ -->
+  <div class="slide" id="s7">
+    <div class="slide-label">Budget Reallocation</div>
+    <h2 style="font-size:28px; margin-bottom:16px;">Focused Spend — From Diffuse to Decisive</h2>
+
+    <div style="margin-bottom:16px;">
+      <table>
+        <thead>
+          <tr><th>Campaign</th><th>Status</th><th>Budget</th><th>Targeting</th><th>Rationale</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>6WK Creative Mix (Proven)</strong></td>
+            <td><span class="tag tag-red">Restore Mon</span></td>
+            <td style="color:var(--green); font-weight:600;">$100/day</td>
+            <td>Broad USA/CA/AUS/UK</td>
+            <td>$11.75 CPA formula — top performer</td>
+          </tr>
+          <tr>
+            <td><strong>6WK NZ Expansion</strong></td>
+            <td><span class="tag tag-green">Active</span></td>
+            <td style="color:var(--green); font-weight:600;">$60/day</td>
+            <td>New Zealand</td>
+            <td>New market test — monitor CPA</td>
+          </tr>
+          <tr>
+            <td><strong>Sugar Detox Static 2</strong></td>
+            <td><span class="tag tag-amber">Scale Up</span></td>
+            <td style="color:var(--green); font-weight:600;">$60/day</td>
+            <td>Cold + Warm</td>
+            <td>$0.53 CPA winner — scale urgently</td>
+          </tr>
+          <tr>
+            <td><strong>Sugar Detox Warm</strong></td>
+            <td><span class="tag tag-green">Active</span></td>
+            <td style="font-weight:600;">$40/day</td>
+            <td>Warm audience</td>
+            <td>Attribution gap — check tracker</td>
+          </tr>
+          <tr>
+            <td><strong>Video Test (isolated)</strong></td>
+            <td><span class="tag tag-amber">Create</span></td>
+            <td style="font-weight:600;">$30/day</td>
+            <td>Own ad set only</td>
+            <td>Weekend Trap video — min $90 before eval</td>
+          </tr>
+          <tr>
+            <td><strong>All Fragmented Ad Sets</strong></td>
+            <td><span class="tag tag-red">Pause</span></td>
+            <td style="color:var(--red);">$0</td>
+            <td>—</td>
+            <td>Diluting optimisation signal</td>
+          </tr>
+          <tr style="background:rgba(43,127,255,0.06);">
+            <td><strong>TOTAL</strong></td>
+            <td></td>
+            <td style="color:var(--cyan); font-weight:700; font-size:16px;">$290/day</td>
+            <td></td>
+            <td>Focused vs $200/day diffuse</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-3" style="gap:12px;">
+      <div class="alert alert-red">
+        <span class="alert-icon">📅</span>
+        <div class="alert-text"><strong>Launch Day Rule</strong>Never launch on weekends. B2B coaches make purchase decisions Mon–Fri. Always launch Mon or Tue.</div>
+      </div>
+      <div class="alert alert-amber">
+        <span class="alert-icon">📋</span>
+        <div class="alert-text"><strong>Approval Protocol</strong>Budget increase &gt;20% = Slack approval first. Audience changes = always confirm with Alicia before touching.</div>
+      </div>
+      <div class="alert alert-blue">
+        <span class="alert-icon">🎯</span>
+        <div class="alert-text"><strong>Phase 2 (Wk 3)</strong>Content Club $60/day + CE list-building campaign once 6WK + SD momentum is restored.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SLIDE 8: ACTION PLAN ══════════ -->
+  <div class="slide" id="s8">
+    <div class="slide-label">Action Plan</div>
+    <h2 style="font-size:28px; margin-bottom:16px;">4-Week Turnaround Roadmap</h2>
+
+    <div class="week-grid" style="margin-bottom:16px;">
+      <div class="week-card" style="border-top: 2px solid var(--red);">
+        <div class="week-num">WEEK 1 · FEB 18–24</div>
+        <div class="week-theme" style="color:var(--red);">STABILISE</div>
+        <ul class="week-items">
+          <li>CAPI setup via Avashesh by Thu 20</li>
+          <li>Restore 6WK Creative Mix $100/day (Mon launch)</li>
+          <li>Pause all $20+ spend / 0 conv ads TODAY</li>
+          <li>Scale Sugar Detox Static 2 to cold + warm</li>
+          <li>Commit to $12 SD price — update all copy</li>
+          <li>Isolated video ad set $30/day</li>
+          <li>Brief 3 new static concepts</li>
+        </ul>
+      </div>
+      <div class="week-card" style="border-top: 2px solid var(--amber);">
+        <div class="week-num">WEEK 2 · FEB 25–MAR 3</div>
+        <div class="week-theme" style="color:var(--amber);">OPTIMISE</div>
+        <ul class="week-items">
+          <li>3 new statics live (blonde focus)</li>
+          <li>NZ expansion test $30/day</li>
+          <li>Evaluate Weekend Trap video (0 conv at $90 = replace)</li>
+          <li>SD $27 mini-bundle OB test</li>
+          <li>6WK OB new offer test ($97 / $37)</li>
+          <li>TY page annual + coaching upsells live</li>
+        </ul>
+      </div>
+      <div class="week-card" style="border-top: 2px solid var(--electric);">
+        <div class="week-num">WEEK 3 · MAR 4–10</div>
+        <div class="week-theme" style="color:var(--electric);">SCALE</div>
+        <ul class="week-items">
+          <li>6WK to $150/day if CPA &lt;$20</li>
+          <li>Content Club relaunch $60/day</li>
+          <li>CE list-building splinter campaign</li>
+          <li>Full retargeting stack (6WK → SD → CE)</li>
+          <li>Total budget target $350–400/day</li>
+        </ul>
+      </div>
+      <div class="week-card" style="border-top: 2px solid var(--green);">
+        <div class="week-num">WEEK 4 · MAR 11–17</div>
+        <div class="week-theme" style="color:var(--green);">CONSOLIDATE</div>
+        <ul class="week-items">
+          <li>Full review call with Alicia</li>
+          <li>Scale winners to $200/day</li>
+          <li>June challenge creative brief approved</li>
+          <li>CE pacing review vs 500-client goal</li>
+          <li>Google Drive asset hub complete</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2" style="gap:12px;">
+      <div class="alert alert-green">
+        <span class="alert-icon">🎯</span>
+        <div class="alert-text"><strong>Week 1 Success Metrics</strong>CAPI live, 6WK active Mon, 6WK CPA &lt;$30 within 5 days, SD CPA &lt;$25, 5+ confirmed sales/day</div>
+      </div>
+      <div class="alert alert-blue">
+        <span class="alert-icon">🏆</span>
+        <div class="alert-text"><strong>Month 1 Goal</strong>200+ new 6WK buyers · 100+ SD buyers · 20–30 CE trials · Account ROAS &gt;1.5x (real)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SLIDE 9: TARGETS ══════════ -->
+  <div class="slide" id="s9">
+    <div class="slide-label">Performance Targets</div>
+    <h2 style="font-size:28px; margin-bottom:16px;">Where We're Going</h2>
+
+    <div style="margin-bottom:16px;">
+      <table>
+        <thead>
+          <tr><th>Metric</th><th>Current</th><th>Week 1 Target</th><th>Week 4 Target</th><th>Lever</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>6WK CPA (tracker)</strong></td>
+            <td style="color:var(--red);">$55+</td>
+            <td style="color:var(--amber);">&lt;$30</td>
+            <td style="color:var(--green);">&lt;$20</td>
+            <td>Restore proven Creative Mix</td>
+          </tr>
+          <tr>
+            <td><strong>SD CPA (tracker)</strong></td>
+            <td style="color:var(--amber);">$22.86</td>
+            <td style="color:var(--amber);">&lt;$20</td>
+            <td style="color:var(--green);">&lt;$15</td>
+            <td>Scale Static 2, fix attribution</td>
+          </tr>
+          <tr>
+            <td><strong>Link CTR</strong></td>
+            <td style="color:var(--red);">~1%</td>
+            <td style="color:var(--amber);">&gt;1.5%</td>
+            <td style="color:var(--green);">&gt;2%</td>
+            <td>Creative refresh — 3 new statics</td>
+          </tr>
+          <tr>
+            <td><strong>CPM</strong></td>
+            <td style="color:var(--red);">$40</td>
+            <td style="color:var(--amber);">$30–35</td>
+            <td style="color:var(--green);">&lt;$25</td>
+            <td>Reduce frequency, new creative</td>
+          </tr>
+          <tr>
+            <td><strong>Bounce Rate</strong></td>
+            <td style="color:var(--red);">75%</td>
+            <td style="color:var(--amber);">&lt;70%</td>
+            <td style="color:var(--green);">&lt;60%</td>
+            <td>Page speed + landing optimisation</td>
+          </tr>
+          <tr>
+            <td><strong>6WK OB CVR</strong></td>
+            <td style="color:var(--red);">19.4%</td>
+            <td style="color:var(--amber);">&gt;22%</td>
+            <td style="color:var(--green);">&gt;30%</td>
+            <td>$97/$37 OB re-evaluation</td>
+          </tr>
+          <tr>
+            <td><strong>Daily Confirmed Sales</strong></td>
+            <td style="color:var(--red);">4–5</td>
+            <td style="color:var(--amber);">&gt;8</td>
+            <td style="color:var(--green);">&gt;15</td>
+            <td>Scale budgets + new creatives</td>
+          </tr>
+          <tr>
+            <td><strong>CE Trials / Week</strong></td>
+            <td style="color:var(--red);">1–2</td>
+            <td style="color:var(--amber);">&gt;3</td>
+            <td style="color:var(--green);">&gt;10</td>
+            <td>Better CE pitch + retargeting</td>
+          </tr>
+          <tr>
+            <td><strong>Account ROAS (real)</strong></td>
+            <td style="color:var(--red);">~1.2x</td>
+            <td style="color:var(--amber);">&gt;1.5x</td>
+            <td style="color:var(--green);">&gt;2.5x</td>
+            <td>All of the above</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert alert-blue">
+      <span class="alert-icon">🏁</span>
+      <div class="alert-text" style="font-size:14px;"><strong>90-Day North Star: Coach Engine 400+ clients (pacing for 500 goal) · Content Club 650 members · $30K+ monthly confirmed revenue (tracker)</strong></div>
+    </div>
+  </div>
+
+  <!-- ══════════ SLIDE 10: 72-HOUR CHECKLIST ══════════ -->
+  <div class="slide" id="s10">
+    <div class="slide-label">72-Hour Sprint</div>
+    <h2 style="font-size:28px; margin-bottom:16px;">Do This Now</h2>
+
+    <div class="grid-2" style="gap:16px; flex:1;">
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--electric); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:12px;">Charles — Account Manager</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="alert alert-red" style="padding:10px 14px;">
+            <span class="alert-icon">🔴</span>
+            <div class="alert-text"><strong>TODAY</strong> Pause all $20+ / 0 conv ads. Send plan to Alicia. Schedule strategy call.</div>
+          </div>
+          <div class="alert alert-red" style="padding:10px 14px;">
+            <span class="alert-icon">🔴</span>
+            <div class="alert-text"><strong>TODAY</strong> Confirm $12 SD price point. Update all ad copy and landing page references.</div>
+          </div>
+          <div class="alert alert-amber" style="padding:10px 14px;">
+            <span class="alert-icon">🟡</span>
+            <div class="alert-text"><strong>WED FEB 19</strong> Duplicate SD Static 2 to cold + warm. Consolidate budget per allocation. Brief 3 new statics.</div>
+          </div>
+          <div class="alert alert-amber" style="padding:10px 14px;">
+            <span class="alert-icon">🟡</span>
+            <div class="alert-text"><strong>THU FEB 20</strong> Create isolated Weekend Trap video ad set at $30/day. Set up Google Drive asset hub.</div>
+          </div>
+          <div class="alert alert-green" style="padding:10px 14px;">
+            <span class="alert-icon">🟢</span>
+            <div class="alert-text"><strong>MON FEB 23</strong> Launch restored 6WK Creative Mix at $100/day. Confirm Monday as weekly reporting day.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--cyan); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:12px;">Avashesh — Tracking</div>
+        <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+          <div class="alert alert-red" style="padding:10px 14px;">
+            <span class="alert-icon">🔴</span>
+            <div class="alert-text"><strong>WED FEB 19</strong> Full pixel audit on all landing + thank-you pages. Identify firing gaps.</div>
+          </div>
+          <div class="alert alert-amber" style="padding:10px 14px;">
+            <span class="alert-icon">🟡</span>
+            <div class="alert-text"><strong>THU FEB 20</strong> Implement CAPI with pixel deduplication. Verify no double-counting.</div>
+          </div>
+          <div class="alert alert-amber" style="padding:10px 14px;">
+            <span class="alert-icon">🟡</span>
+            <div class="alert-text"><strong>THU FEB 20</strong> Set up custom conversions: OB purchase, upsell, CE trial, thank-you page unique fires.</div>
+          </div>
+          <div class="alert alert-blue" style="padding:10px 14px;">
+            <span class="alert-icon">ℹ️</span>
+            <div class="alert-text"><strong>Ongoing</strong> Add UTM parameters for GA4 cross-reference. Target: attribution gap &lt;10%.</div>
+          </div>
+        </div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--grey); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px;">Key Assets</div>
+        <div class="card" style="font-size:12px; line-height:1.8; color:var(--grey);">
+          <div><strong style="color:var(--white);">Sales Tracker:</strong> Google Sheets (daily cross-check)</div>
+          <div><strong style="color:var(--white);">Asset Drive:</strong> Google Drive (source of truth)</div>
+          <div><strong style="color:var(--white);">Client Slack:</strong> #fit-pro-essentials-client-channel</div>
+          <div><strong style="color:var(--white);">Reporting:</strong> Every Monday — tracker vs Meta side-by-side</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- NAV -->
+<div class="hint">← → arrow keys to navigate</div>
+<nav>
+  <button class="nav-arrow" onclick="go(-1)">←</button>
+  <button onclick="goTo(0)" class="active">Title</button>
+  <button onclick="goTo(1)">Diagnosis</button>
+  <button onclick="goTo(2)">Attribution</button>
+  <button onclick="goTo(3)">Ads</button>
+  <button onclick="goTo(4)">Creative</button>
+  <button onclick="goTo(5)">Funnel</button>
+  <button onclick="goTo(6)">Budget</button>
+  <button onclick="goTo(7)">Plan</button>
+  <button onclick="goTo(8)">Targets</button>
+  <button onclick="goTo(9)">72hr</button>
+  <span id="counter">1 / 10</span>
+  <button class="nav-arrow" onclick="go(1)">→</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const navBtns = document.querySelectorAll('nav button:not(.nav-arrow)');
+  const counter = document.getElementById('counter');
+  let cur = 0;
+
+  function goTo(i) {
+    slides[cur].classList.remove('active');
+    navBtns[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(slides.length - 1, i));
+    slides[cur].classList.add('active');
+    navBtns[cur].classList.add('active');
+    counter.textContent = `${cur + 1} / ${slides.length}`;
+  }
+
+  function go(dir) { goTo(cur + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+
+  // Touch swipe
+  let tx = 0;
+  document.addEventListener('touchstart', e => tx = e.touches[0].clientX);
+  document.addEventListener('touchend', e => {
+    const dx = tx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) go(dx > 0 ? 1 : -1);
+  });
+</script>
+</body>
+</html>
